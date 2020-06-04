@@ -19,6 +19,7 @@ Il y aura trois moyens de stopper la collecte de données de l'éxercice:
   - obtenir un certain nombre de réponses
   - dépasser une limite de temps
   - intervention du professeur
+  
 *(notons que dans les deux premiers cas, le professeur peut toujours stopper la collecte de données)*
 Le slide suivant sera obligatoirement le slide **réponses** lié à l'exercice.
 
