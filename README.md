@@ -1,4 +1,4 @@
-# Amphi
+  #    Amphi
 ## *Outil interactif pour l'amphi en présentiel ou distanciel*  
 
 Sur le site de *PlatOn*, chaque application correspondra à un cours, que le professeur pourra choisir de rendre visible ou non par les élèves.  
