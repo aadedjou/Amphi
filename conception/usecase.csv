@@ -1,0 +1,7 @@
+num:name:acteur:objectif:resume
+1:Preparer l'atelier:teacher:X:Saisir l'ensemble des exercices et grille et le sénario de l'atelier
+2:X:Commercial:1:Le commercial crée et complète un devis en sélectionnant un template préparé par l'administrateur des ventes, puis l'imprime afin que le client en ait une copie.
+3:X:Commercial:2:Le commercial recueille la signature d'un client et provoque la création d'un bon de commande, et imprime le bon de commande afin que le client en ait une copie.
+4:Créer un template:Administrateur des ventes:3:L'administrateur des ventes est envoyé sur un editeur de texte personnalisable où il lui est possible de définir des zones de remplissages. 
+5:Récupérer des statistiques:Administrateur des ventes:4:Calcule les statistiques sur les devis et fait apparaitre différentes informations utiles au salon (par exemple le nombre de devis vendus)
+6:Convertir un devis:Administrateur des ventes:5:L'administrateur des ventes lance une procédure qui convertit tous les devis stockés sur le logiciel encore non convertis en fichier compatible avec SAGE
