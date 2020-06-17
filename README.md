@@ -29,3 +29,6 @@ Si l'application peut être lancée plusieurs fois, on pourrait même comparer c
 Les élèves ne pourront pas aller plus loin que le slide courant du professeur, de telle manière qu'ils ne pourront pas voir à l'avance les slides **exercice** ou **réponses** que propose la présentation du professeur.  
 A la fin de la présentation, le professeur sera libre de rendre privée l'application ou non.  
 Le professeur pourra aussi choisir de masquer les slides **exercice** et/ou **réponses** de sa présentation.
+
+###  Interface
+
