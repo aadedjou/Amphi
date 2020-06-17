@@ -1,4 +1,4 @@
-/!\ Avant d'ouvrir le dossier angular,
+**/!\\**       Avant d'ouvrir le dossier angular,
 veuillez lancer dans le dossier source la commande `npm install`
 créant le dossier **/nodes_modules** indispensable au fonctionnement de l'application.
 
