@@ -1,6 +1,6 @@
 /!\ Avant d'ouvrir le dossier angular,
 veuillez lancer dans le dossier source la commande `ng modules`
-créant le dossier **nodes_modules** indispensable au fonctionnement de l'application.
+créant le dossier **/nodes_modules** indispensable au fonctionnement de l'application.
 
 Pour que le *localhost* se mette à écouter l'application, lancez la commande `ng serve`,
 ou exécutez `launch-angular.bat`. *(l'extension `.sh` serait préférable sous Linux)*
