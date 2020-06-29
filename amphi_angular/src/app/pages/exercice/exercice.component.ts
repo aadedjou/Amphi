@@ -6,6 +6,7 @@ import { Exercice } from 'src/app/models/exercice.model';
   templateUrl: './exercice.component.html',
   styleUrls: ['./exercice.component.scss']
 })
+
 export class ExerciceComponent implements OnInit {
   @Input() exo: Exercice;
 
@@ -13,5 +14,4 @@ export class ExerciceComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
