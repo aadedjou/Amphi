@@ -1,35 +1,24 @@
 /* background */
 body {
+  margin: 0;
   background: linear-gradient(to bottom, rgba(70, 70, 70), rgba(25, 25, 25));
   background-repeat: no-repeat; background-attachment: fixed;
-  color: #FFFFFF; font-family: Avantgarde;  
+  color: #FFFFFF;
+  font-family: Avantgarde, Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* titles */
-h1 {
-  font-size: 40pt;
-  text-align: center; font-weight: bold;
-  background: -webkit-linear-gradient(rgba(250, 120, 150), rgba(200, 60, 200));
-  
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-h2 {
-  font-size: 60pt;
-  text-align: center;
-  font-variant: small-caps
-  ;
-}
+/* text */
+p { font-size: 14pt;}
 
 /* boxes */
 div { float: left; }
-div { border: solid white 0px; } 
-div.line { width: 100% }
-
-span.line { width: 100% }
+div { border: solid white 0px; }
+.line { width: 100% }
+button { cursor: pointer; }
+.button { cursor: pointer; }
 
 /* links */
 a { color: rgb(255, 255, 255); }
 a:visited { color: rgb(255, 255, 255); }
+
+html, body { height: 100%; }

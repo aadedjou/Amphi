@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Cours } from '../models/cours.model';
+import { Slide } from '../../models/amphi.models';
 
 @Injectable({ providedIn: 'root' })
-export class CoursService {
-  private items: Cours[] = [
+
+export class SlideService {
+  private items: Slide[] = [
     { title: 'slide', contenu: 'langage pref de bruce' },
     { title: 'slide', contenu: 'le meilleur des langages tout simplement' },
     { title: 'slide', contenu: 'qui ??' },
@@ -13,7 +14,7 @@ export class CoursService {
 
   constructor() { }
 
-  getCours() {
+  getSlide() {
     return this.items;
   }
 
