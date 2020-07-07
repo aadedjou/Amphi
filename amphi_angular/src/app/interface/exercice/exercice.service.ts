@@ -6,15 +6,15 @@ import { Exercice, Type } from '../../models/amphi.models';
 export class ExerciceService {
 
   private exos: Exercice[] = [
-    { name: 'exo1', type: Type.ControlledInput, question: 'qu\'est ce qui est jaune et qui attend ?' },
-    { name: 'exo2', type: Type.QCU,             question: 'combien de slides comporte la présentation ?' },
-    { name: 'exo3', type: Type.QCM,             question: 'un piéton traverse au rouge. que faire ?' },
-    { name: 'exo4', type: Type.TrueFalse,       question: 'vas-tu répondre \'faux\' à cette question ?' },
-    { name: 'exo5', type: Type.Code,            question: 'écrivez la fonction add(a, b) qui additionne deux nombres.' },
-    { name: 'exo6', type: Type.Links,           question: 'reliez chaque nom de professeur à son prénom.' },
-    { name: 'exo7', type: Type.OrderedList,     question: 'ordonnez chaque prof par date de naissance, du plus jeune au plus agé' },
-    { name: 'exo8', type: Type.FreeAnswer,      question: '...sinon ta journée ?' },
-    { name: 'exo9', type: Type.NumericAnswer,   question: 'âge de revuz?' },
+    { name: 'ctrl',  type: Type.ControlledInput, question: 'qu\'est ce qui est jaune et qui attend ?' },
+    { name: 'qcu',   type: Type.QCU,             question: 'combien de slides comporte la présentation ?' },
+    { name: 'qcm',   type: Type.QCM,             question: 'un piéton traverse au rouge. que faire ?' },
+    { name: 't/f',   type: Type.TrueFalse,       question: 'vas-tu répondre \'faux\' à cette question ?' },
+    { name: 'code',  type: Type.Code,            question: 'écrivez la fonction add(a, b) qui additionne deux nombres.' },
+    { name: 'links', type: Type.Links,           question: 'reliez chaque nom de professeur à son prénom.' },
+    { name: 'list',  type: Type.OrderedList,     question: 'ordonnez chaque prof par date de naissance, du plus jeune au plus agé' },
+    { name: 'free',  type: Type.FreeAnswer,      question: '...sinon ta journée ?' },
+    { name: 'num',   type: Type.NumericAnswer,   question: 'âge de revuz?' },
   ];
 
   constructor() { }

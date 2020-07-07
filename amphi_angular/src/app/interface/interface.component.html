@@ -1,3 +1,4 @@
+
 <div style="background-color: #a880ff; height: 50px; width: 100%;">
   <h2 style="padding-top: 10px;"> Amphi </h2>
 </div>
@@ -47,11 +48,17 @@
     </div>
   </ng-template>
 
-  <!-- STATS CURRENT EXERCICE -->
+  <!-- CURRENT EXERCICE STATS -->
   <ng-container *ngIf="selection != null; else aucunExo">
-    <div class="section">
-      <div class="line" style="height: 40%;"> </div>
-      <h2> STATS </h2>
+    <div class="section" style="background-color: white;">
+      <div style="width: 100%; height: 25%; margin: -20px 0px 0px -20px;">
+        <button mat-icon-button color="primary" (click)="changeData()" style=" clear: both; float: right;">
+          <i class="material-icons"> refresh </i>
+        </button>
+      </div>
+      <div style="width: 100%; margin-left: -20px;;">
+        <google-chart style="width: 100px;" [data]="columnChart"></google-chart>
+      </div>
     </div>
   </ng-container>
   <ng-template #aucunExo>
@@ -66,30 +73,29 @@
     <ng-container *ngIf="selection == null; else backToSlides">
       <div class="line">
         <!-- bouton gauche -->
-      <ng-container *ngIf="(index > 0)">
-        <div class="button" (click)="prevSlide()">
-          <i class="material-icons"> chevron_left </i>
-        </div>
-      </ng-container>
-      <!-- bouton droite -->
-      <ng-container *ngIf="(index < slides.length -1)">
-        <div class="button" (click)="nextSlide()" style="float: right;">
-          <i class="material-icons"> chevron_right </i>
-        </div>
-      </ng-container>
-    </div>
-    <!-- exos -->
+        <ng-container *ngIf="(index > 0)">
+          <button mat-mini-fab color="basic" (click)="prevSlide()" style="float: left;">
+            <i class="material-icons"> chevron_left </i>
+          </button>
+        </ng-container>
+        <!-- bouton droite -->
+        <ng-container *ngIf="(index < slides.length -1)">
+          <button mat-mini-fab color="basic" (click)="nextSlide()" style="float: right;">
+            <i class="material-icons"> chevron_right </i>
+          </button>
+        </ng-container>
+      </div>
+      <!-- exos -->
       <ng-container *ngFor="let exercice of exercices">
         <app-exercice [exercice]= exercice (click)="displayExercice(exercice)"></app-exercice>
       </ng-container>
-
     </ng-container>
 
     <ng-template #backToSlides>
       <div class="line" style="float: left;">
-        <div class="button" (click)="selection = null">
+        <button mat-mini-fab color="warn" (click)="selection = null" style="float: left;">
           <i class="material-icons"> close </i>
-        </div>
+        </button>
         <p> Retour à la présentation </p>
       </div>
     </ng-template>
