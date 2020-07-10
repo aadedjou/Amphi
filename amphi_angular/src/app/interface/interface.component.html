@@ -51,14 +51,7 @@
   <!-- CURRENT EXERCICE STATS -->
   <ng-container *ngIf="selection != null; else aucunExo">
     <div class="section" style="background-color: white;">
-      <div style="width: 100%; height: 25%; margin: -20px 0px 0px -20px;">
-        <button mat-icon-button color="primary" (click)="changeData()" style=" clear: both; float: right;">
-          <i class="material-icons"> refresh </i>
-        </button>
-      </div>
-      <div style="width: 100%; margin-left: -20px;;">
-        <google-chart style="width: 100px;" [data]="columnChart"></google-chart>
-      </div>
+      <app-chart [exercice]= selection></app-chart>
     </div>
   </ng-container>
   <ng-template #aucunExo>

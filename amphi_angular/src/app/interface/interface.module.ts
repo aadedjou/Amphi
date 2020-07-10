@@ -5,6 +5,7 @@ import { ExerciceComponent } from './exercice/exercice.component';
 import { SlideComponent } from './slide/slide.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { MatButtonModule } from '@angular/material/button'
+import { ChartComponent } from './exercice/chart/chart.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button'
   declarations: [
     InterfaceComponent,
     ExerciceComponent,
-    SlideComponent
+    SlideComponent,
+    ChartComponent
   ],
   providers: [],
   exports: [

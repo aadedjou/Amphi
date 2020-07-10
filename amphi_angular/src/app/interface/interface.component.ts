@@ -1,8 +1,9 @@
-import { GoogleChartInterface } from 'ng2-google-charts';
 import { Component, OnInit } from '@angular/core';
+import { Slide, Exercice, Chart } from '../models/amphi.models';
 import { ExerciceService } from './exercice/exercice.service';
-import { Slide, Exercice } from '../models/amphi.models';
+import { ChartService } from './exercice/chart/chart.service'
 import { SlideService } from './slide/slide.service';
+import { GoogleChartInterface } from 'ng2-google-charts';
 
 @Component({
   selector: 'app-interface',
@@ -12,55 +13,22 @@ import { SlideService } from './slide/slide.service';
 
 export class InterfaceComponent implements OnInit {
   index = 0;
+  chart: Chart;
   slides: Slide[];
-  selection: Exercice = null;
   exercices: Exercice[];
-
-  columnChart: GoogleChartInterface = {
-    chartType: 'ColumnChart',
-    dataTable: [
-      ['âge', 'reponses'],
-      [ 60, 2 ],
-      [ 59, 14 ],
-      [ 58, 12 ],
-      [ 57, 16 ],
-      [ 56, 13 ],
-      [ 55, 6 ],
-      [ 54, 3 ],
-      [ 53, 1 ],
-      [ 52, 4 ],
-      [ 51, 1 ],
-      [ 50, 7 ],
-    ],
-    //firstRowIsData: true,
-    options: {
-      title: 'Réponses',
-      animation: {
-        duration: 500,
-        easing: 'out',
-        startup: true
-      }
-    },
-  };
-
-
-  public changeData(): void {
-    const dataTable = this.columnChart.dataTable;
-    var randomIndex = 1 + Math.round(Math.random() * dataTable.length - 1);
-
-    dataTable[randomIndex][1] += 5;
-    this.columnChart.component.draw();
-  }
+  selection: Exercice = null;
 
   constructor(
-    private readonly coursService: SlideService,
+    private readonly slideService: SlideService,
+    private readonly chartService: ChartService,
     private readonly exoService: ExerciceService
-  ) {}
+  ) {};
 
   ngOnInit() {
-    this.slides = this.coursService.getSlide();
-    this.exercices = this.exoService.getExercice();
-    this.selection = this.exercices[this.exercices.length-1];
+    this.slides = this.slideService.getSlide();
+    this.exercices = this.exoService.getExercices();
+    this.selection = this.exercices[this.exercices.length-2];
+    this.chart = this.chartService.getChart(this.selection);
   }
 
   nextSlide() {
