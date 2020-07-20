@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Slide, Exercice, Chart } from '../models/amphi.models';
 import { ExerciceService } from './exercice/exercice.service';
-import { ChartService } from './exercice/chart/chart.service'
+import { ChartService } from './exercice/chart-ngx/chart-ngx.service'
 import { SlideService } from './slide/slide.service';
-import { GoogleChartInterface } from 'ng2-google-charts';
 
 @Component({
   selector: 'app-interface',
@@ -28,7 +27,6 @@ export class InterfaceComponent implements OnInit {
     this.slides = this.slideService.getSlide();
     this.exercices = this.exoService.getExercices();
     this.selection = this.exercices[this.exercices.length-2];
-    this.chart = this.chartService.getChart(this.selection);
   }
 
   nextSlide() {

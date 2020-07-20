@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { GoogleChartInterface } from 'ng2-google-charts';
-import { Chart, Exercice } from '../../../models/amphi.models';
+import { Chart, Exercice, Ng2Chart } from '../../../models/amphi.models';
 import { ChartService } from './chart.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ChartService } from './chart.service';
 })
 export class ChartComponent implements OnInit {
   @Input() exercice : Exercice;
-  exoChart : Chart;
+  exoChart : Ng2Chart;
 
   constructor(
     private readonly chartService: ChartService,

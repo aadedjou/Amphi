@@ -1,4 +1,5 @@
-import { GoogleChartInterface } from "ng2-google-charts";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GoogleChartInterface } from 'ng2-google-charts';
 
 export enum Type {
   CONTROLLED_INPUT = "Saisie contrôlée",
@@ -17,6 +18,20 @@ export interface Slide {
   contenu: string;
 }
 
+export interface NgxChart {
+  data: any[],
+  view: number[],
+  gradient : boolean,
+  showXAxis : boolean,
+  showYAxis : boolean,
+  showLegend : boolean,
+  showXAxisLabel : boolean,
+  showYAxisLabel : boolean,
+  xAxisLabel : string,
+  yAxisLabel : string,
+  colorScheme : {}
+}
+
 export interface Exercice {
   type: Type;
   name: string;
@@ -24,8 +39,13 @@ export interface Exercice {
   reps: {};
 }
 
-export interface Chart {
+export interface Ng2Chart {
   exercice: Exercice;
   chart : GoogleChartInterface;
+}
+
+export interface Chart {
+  exercice: Exercice;
+  chart : NgxChart;
 }
 

@@ -1,0 +1,21 @@
+<div style="display: flex; overflow: hidden; height: 90%;">
+  <ngx-charts-bar-vertical
+    [scheme]="colorScheme"
+    [results]="data"
+    [gradient]="gradient"
+    [legend]="showLegend"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [customColors]="customColors"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [barPadding]="0"
+    (select)="onSelect($event)">
+  </ngx-charts-bar-vertical>
+
+</div>
+  <button mat-icon-button color="primary" (click)="refresh()" style="float: right;">
+    <i class="material-icons"> refresh </i>
+  </button>

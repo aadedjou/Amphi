@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InterfaceComponent } from './interface.component';
-import { ExerciceComponent } from './exercice/exercice.component';
 import { SlideComponent } from './slide/slide.component';
+import { ChartComponent } from './exercice/chart-ngx/chart-ngx.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ExerciceComponent } from './exercice/exercice.component';
+import { InterfaceComponent } from './interface.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
-import { MatButtonModule } from '@angular/material/button'
-import { ChartComponent } from './exercice/chart/chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
     CommonModule,
     Ng2GoogleChartsModule,
+    NgxChartsModule,
     MatButtonModule
   ],
   declarations: [
@@ -24,4 +26,4 @@ import { ChartComponent } from './exercice/chart/chart.component';
     InterfaceComponent
   ]
 })
-export class InterfaceModule { }
+export class InterfaceModule {}

@@ -50,8 +50,8 @@
 
   <!-- CURRENT EXERCICE STATS -->
   <ng-container *ngIf="selection != null; else aucunExo">
-    <div class="section" style="background-color: white;">
-      <app-chart [exercice]= selection></app-chart>
+    <div class="section">
+      <app-chart-ngx></app-chart-ngx>
     </div>
   </ng-container>
   <ng-template #aucunExo>

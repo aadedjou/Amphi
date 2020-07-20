@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Chart, Exercice, Type } from '../../../models/amphi.models';
+import { Chart, Exercice, Type, Ng2Chart } from '../../../models/amphi.models';
 import { GoogleChartInterface } from 'ng2-google-charts';
 
 @Injectable({ providedIn: 'root' })
@@ -22,7 +22,7 @@ export class ChartService {
       case Type.NUMERCIC_ANSWER:    // x: rep, y: nb de rep
       case Type.FREE_ANSWER:        // x: nb de caractères, y: nb de rep
       case Type.ORDERED_LIST:       // LE BORDEL
-        return "Bar";
+        return "ColumnChart";
     }
   }
   private chartData(exo : Exercice) : string[] {
@@ -59,7 +59,7 @@ export class ChartService {
     }
   }
 
-  public getChart(exo : Exercice) : Chart {
+  public getChart(exo : Exercice) : Ng2Chart {
     return { exercice: exo, chart: this.newChart(exo)};
   }
 }
