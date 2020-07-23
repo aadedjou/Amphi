@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlideComponent } from './slide/slide.component';
 import { ChartComponent } from './exercice/chart-ngx/chart-ngx.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { ExerciceComponent } from './exercice/exercice.component';
 import { InterfaceComponent } from './interface.component';
@@ -13,7 +14,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     CommonModule,
     Ng2GoogleChartsModule,
     NgxChartsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule
   ],
   declarations: [
     InterfaceComponent,
