@@ -1,19 +1,19 @@
 <div style="display: flex; overflow: hidden; height: 90%;">
-  <ngx-charts-bar-vertical
+  <ngx-charts-bar-horizontal
     [scheme]="colorScheme"
-    [results]="data"
+    [results]="grader"
     [gradient]="gradient"
     [legend]="showLegend"
     [xAxis]="showXAxis"
     [yAxis]="showYAxis"
-    [showXAxisLabel]="showXAxisLabel"
+    [showXAxisLabel]="false"
     [showYAxisLabel]="showYAxisLabel"
-    [customColors]="customColors"
+    [customColors]="customColorsGrader"
     [xAxisLabel]="xAxisLabel"
     [yAxisLabel]="yAxisLabel"
     [barPadding]="0"
     (select)="onSelect($event)">
-  </ngx-charts-bar-vertical>
+  </ngx-charts-bar-horizontal>
 
 </div>
   <button mat-icon-button color="primary" (click)="refresh()" style="float: right;">

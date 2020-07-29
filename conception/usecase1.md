@@ -17,21 +17,24 @@ Affichage de slides, certain slides sont des exercices auquels les etudiant peuv
  
 ## Preconditions
 
-1) le cas d'utilisation préparer amphi a été terminé avec success.
+1. le cas d'utilisation préparer amphi a été terminé avec success.
     --> tout les exercices sont testés (fonctionnels)
-2) le groupe est définie (voir platon).
-3) tout les utilisateurs sont connus de platon.
-4) les élèves souhaitant participer doivent l'indiquer (cas d'utilisation se connecter a l'amphi il ya une URL de l'amphi). Eventuellement avant. 
+2. le groupe est définie (voir platon).
+3. tout les utilisateurs sont connus de platon.
+4. les élèves souhaitant participer doivent l'indiquer (cas d'utilisation se connecter a l'amphi il ya une URL de l'amphi). Eventuellement avant. 
 
 
 ## Scenario Nominal
 
 FIXME_[tout ce passe bien c'est le scénario parfait .]_
 
-1. a l'heure dite (5 minutes avant) le système produit le premier slide (le slide d'attente).
-2. le système propose un bouton de démarrage sur la console du prof.
-3. le prof démarre l'activité
-
+Date | Système | Prof | Elève
+-----|---------|------|------
+~5min avant lancement | produit un premier slide (slide *d'attente*) proposant un bouton de lancement du cours sur la console du prof. ||
+lancement | | lance l'activité. |
+| | | a accès au tableau de bord | ne voit que la slide courante du cours en plein écran
+déroulement | | change de slide grâce au tableau de bord | 
+| | change la slide courante de tous les élèves suivant le cours *en direct*, mais pas ceux en *navigation libre*
 
 ### Extensions
 FIXME Moins bien _[Document alternate flows and exceptions to the main success scenario. Extensions are branches from the main scenario, and numbering should align with the step of the success scenario where the branch occurs.]_

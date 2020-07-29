@@ -48,25 +48,6 @@
     </div>
   </ng-template>
 
-  <!-- CURRENT EXERCICE STATS -->
-  <ng-container *ngIf="selection != null; else aucunExo">
-    <div class="section">
-      <mat-tab-group mat-align-tabs="center">
-        <mat-tab label="Réponses">
-          <app-chart-ngx></app-chart-ngx>
-        </mat-tab>
-        <mat-tab label="Grader">
-          <app-chart-ngx></app-chart-ngx>
-        </mat-tab>
-      </mat-tab-group>
-    </div>
-  </ng-container>
-  <ng-template #aucunExo>
-    <div class="blank">
-      <div class="line" style="height: 40%;"> </div>
-      <h2> AUCUN EXERCICE EN COURS </h2>
-    </div>
-  </ng-template>
 
   <!-- CONTROLLER -->
   <div class="section">
@@ -100,4 +81,25 @@
       </div>
     </ng-template>
   </div>
+
+  <!-- CURRENT EXERCICE STATS -->
+  <ng-container *ngIf="selection != null; else aucunExo">
+    <div class="section">
+      <app-chart-ngx></app-chart-ngx>
+      <!-- <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Réponses">
+          <app-chart-ngx></app-chart-ngx>
+        </mat-tab>
+        <mat-tab label="Grader">
+          <app-chart-ngx></app-chart-ngx>
+        </mat-tab>
+      </mat-tab-group> -->
+    </div>
+  </ng-container>
+  <ng-template #aucunExo>
+    <div class="blank">
+      <div class="line" style="height: 40%;"> </div>
+      <h2> AUCUN EXERCICE EN COURS </h2>
+    </div>
+  </ng-template>
 </div>
