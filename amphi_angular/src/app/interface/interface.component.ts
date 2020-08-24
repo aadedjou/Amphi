@@ -1,7 +1,7 @@
+import { Slide, Exercice, ChartKind } from '../models/amphi.models';
 import { Component, OnInit } from '@angular/core';
-import { Slide, Exercice, Chart } from '../models/amphi.models';
 import { ExerciceService } from './exercice/exercice.service';
-import { ChartService } from './exercice/chart-ngx/chart-ngx.service'
+import { ChartService } from './exercice/chart-ngx/chart-ngx.service';
 import { SlideService } from './slide/slide.service';
 
 @Component({
@@ -11,22 +11,29 @@ import { SlideService } from './slide/slide.service';
 })
 
 export class InterfaceComponent implements OnInit {
-  index = 0;
-  chart: Chart;
-  slides: Slide[];
-  exercices: Exercice[];
-  selection: Exercice = null;
+  selection : Exercice = null;
+  exercices : Exercice[];
+  kind : ChartKind = ChartKind.Answers;
+  index : number = 0;
+  slides : Slide[];
 
   constructor(
-    private readonly slideService: SlideService,
     private readonly chartService: ChartService,
+    private readonly slideService: SlideService,
     private readonly exoService: ExerciceService
   ) {};
+
 
   ngOnInit() {
     this.slides = this.slideService.getSlide();
     this.exercices = this.exoService.getExercices();
     this.selection = this.exercices[this.exercices.length-2];
+  }
+
+  setKind(serial : number) {
+    var kind = this.chartService.intToKind(serial);
+    console.log(kind);
+    this.chartService.setKind(kind);
   }
 
   nextSlide() {

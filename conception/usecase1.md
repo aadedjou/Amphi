@@ -40,13 +40,7 @@ voir que le slide d'attente.
 
 #### Défilement *(prof)* 
 1. Le **professeur** change de slide grâce au tableau de bord.
-2. Le **système** change le slide courant de tous les élèves suivant le cours *en direct*,
-mais pas ceux en *navigation libre*.
-
-#### Défilement *(élève)* 
-1. Un **élève** change de slide grâce aux flèches proposées. 
-2. Le **système** change le slide courant de l'élève et le fait passer en mode
-*navigation libre*. Il propose maintenant un bouton pour revenir en direct.
+2. Le **système** change le slide courant de tous les élèves suivant l'activité. Ils ne peuvent revoir la slide précédente que si le **professeur** y revient. Leur navigation parmi les slides n'est pas permise.
 
 #### Exercice
 1. Le **professeur** lance un exercice de son choix depuis le tableau de bord. Il peut gérer l'écran que verront les **élèves** quand ils auront complété l'exercice.
@@ -62,7 +56,7 @@ mais pas ceux en *navigation libre*.
 #### Fin de présentation
 1. Le **professeur** arrive au dernier slide de son cours. Il ferme l'activité et peut choisir de la laisser publique, ou de la mettre en privé.
 2. Si le cours est passé en privé, l'activité devient maintenant une slide *d'attente*, et tous les **élèves** présents ou rejoignant l'activité verront ce slide, sans pouvoir y naviguer.
-3. Les élèves sont libres de retourner au menu ou de rester sur le slide d'attente.
+3. Les **élèves** sont libres de retourner au menu ou de rester sur le slide d'attente.
 
 
  Evènements | Système | Prof | Elève

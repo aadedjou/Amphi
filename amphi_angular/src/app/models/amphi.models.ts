@@ -13,6 +13,11 @@ export enum Type {
   QCU = "QCU"
 }
 
+export enum ChartKind {
+  Answers,
+  Grader
+}
+
 export interface Slide {
   title: string;
   contenu: string;
