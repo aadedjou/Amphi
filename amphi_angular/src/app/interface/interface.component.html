@@ -75,8 +75,8 @@
     <ng-template #backToSlides>
       <div class="line" style="position: relative;">
         <!-- boutton retour -->
-        <button mat-mini-fab color="warn" (click)="selection = null" style="float: left; margin-right: 50px;">
-          <i class="material-icons"> close </i>
+        <button mat-mini-fab color="accent" (click)="selection = null" style="float: left; margin-right: 50px; color: #918a26;">
+          <i class="material-icons"> keyboard_return </i>
         </button>
 
         <div style="position: absolute; left: 50px; bottom: 0; font-size: 20px; padding-bottom: 10px;">
@@ -84,12 +84,12 @@
         </div>
       </div>
 
-      <div style="text-align: left; margin-left: 50px; padding-left: 20px;">
-        <mat-radio-group aria-label="Select Chart Kind" >
-          <mat-radio-button  (click)="setKind(0)" value="0"> Réponses </mat-radio-button>
+      <div style="text-align: left; margin-left: 50px; padding: 20px; background-color: rgba(0,0,0,0.15);">
+        <mat-radio-group aria-label="Select Chart Kind" [(ngModel)]="kind">
+          <mat-radio-button (click)="setKind(0)" value="0"> Réponses </mat-radio-button>
           <br>
-          <mat-radio-button  (click)="setKind(1)" value="1"> Grader </mat-radio-button>
-          <mat-slider thumbLabel min="1" max="25" step="1" value="1"></mat-slider>
+          <mat-radio-button (click)="setKind(1)" value="1"> Grader </mat-radio-button>
+          <mat-slider thumbLabel min="1" max="25" step="1" value="1" [disabled]="kind == 0" (input)="updateStep($event)"></mat-slider>
           <br>
         </mat-radio-group>
       </div>
@@ -98,7 +98,7 @@
 
   <!-- CURRENT EXERCICE STATS -->
   <ng-container *ngIf="selection != null; else aucunExo">
-    <div class="section">
+    <div class="section" >
       <app-chart-ngx></app-chart-ngx>
       <!-- <mat-tab-group mat-align-tabs="center">
         <mat-tab label="Réponses">

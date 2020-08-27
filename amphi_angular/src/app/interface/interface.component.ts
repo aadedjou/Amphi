@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExerciceService } from './exercice/exercice.service';
 import { ChartService } from './exercice/chart-ngx/chart-ngx.service';
 import { SlideService } from './slide/slide.service';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-interface',
@@ -13,7 +14,7 @@ import { SlideService } from './slide/slide.service';
 export class InterfaceComponent implements OnInit {
   selection : Exercice = null;
   exercices : Exercice[];
-  kind : ChartKind = ChartKind.Answers;
+  kind : ChartKind = 0;
   index : number = 0;
   slides : Slide[];
 
@@ -32,7 +33,6 @@ export class InterfaceComponent implements OnInit {
 
   setKind(serial : number) {
     var kind = this.chartService.intToKind(serial);
-    console.log(kind);
     this.chartService.setKind(kind);
   }
 
@@ -46,5 +46,9 @@ export class InterfaceComponent implements OnInit {
 
   displayExercice(exercice : Exercice) {
     this.selection = exercice;
+  }
+
+  updateStep(event: any) {
+    this.chartService.setStep(event.value);
   }
 }

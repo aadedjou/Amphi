@@ -3,6 +3,7 @@ import { Input } from '@angular/core';
 import { ChartService } from './chart-ngx.service';
 import { HostListener } from "@angular/core";
 import { Subject } from 'rxjs';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-chart-ngx',
@@ -22,22 +23,9 @@ export class ChartComponent implements OnInit {
   screenHeight : number;
   update$: Subject<any> = new Subject();
 
-  customColors = [
-    {
-      name: '61',
-      value: 'rgb(200, 150, 250)'
-    }
-  ];
   axisFormat(val) {
     return val %5 == 0 ? String(val) : "";
   }
-
-  customColorsGrader = [
-    {
-      name: '100',
-      value: 'rgb(200, 150, 250)'
-    }
-  ];
   size: any[] = [700, 400];
 
   // options
@@ -64,12 +52,13 @@ export class ChartComponent implements OnInit {
   }
 
   // Update function
-  updateChart(){
+  updateChart() {
     this.update$.next(true);
   }
 
   ngOnInit() {
-    this.chartService.setAnswers(this.chartService.getAnswers().sort(this.sortData));
+    this.chartService.reload();
+    this.chartService.getAnswers().sort(this.sortData)
   }
   onSelect(event) {
     console.log(event);
@@ -98,23 +87,27 @@ export class ChartComponent implements OnInit {
 
   private addRandomData() {
     for (let i = 0; i < 10; i++) {
-      var randomValue = 61 + (-100 +  Math.round(Math.random() * 200));
-      this.addAnswer((randomValue));
+      var randomValue = 61 + (-25 +  Math.round(Math.random() * 50));
+      this.addAnswer(randomValue);
     }
-    this.reloadChart();
   };
 
   private reloadChart() {
-    this.chartService.setAnswers([this.chartService.getAnswers()]);
+    this.chartService.reload();
     this.chartService.getAnswers().sort(this.sortData);
   }
 
   public refresh() {
     this.addRandomData();
-    this.cdr.detectChanges();
+    this.reloadChart();
+    //this.cdr.detectChanges();
   }
 
   public data() {
     return this.chartService.getChartData();
+  }
+
+  public customColors() {
+    return this.chartService.customColors;
   }
 }

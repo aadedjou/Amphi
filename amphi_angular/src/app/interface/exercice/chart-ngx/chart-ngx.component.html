@@ -1,5 +1,5 @@
 <div style="display: flex; overflow: hidden; height: 90%;">
-  <ngx-charts-bar-horizontal
+  <ngx-charts-bar-vertical
     [scheme]="colorScheme"
     [results]="data()"
     [gradient]="gradient"
@@ -8,14 +8,14 @@
     [yAxis]="showYAxis"
     [showXAxisLabel]="false"
     [showYAxisLabel]="showYAxisLabel"
-    [customColors]="customColorsGrader"
+    [customColors]="customColors()"
     [xAxisLabel]="xAxisLabel"
     [yAxisLabel]="yAxisLabel"
     [barPadding]="0"
     (select)="onSelect($event)">
-  </ngx-charts-bar-horizontal>
+  </ngx-charts-bar-vertical>
 </div>
 
-<button mat-icon-button color="primary" (click)="refresh()" style="float: right;">
+<button mat-icon-button color="accent" (click)="refresh()" style="float: left;">
   <i class="material-icons"> refresh </i>
 </button>
