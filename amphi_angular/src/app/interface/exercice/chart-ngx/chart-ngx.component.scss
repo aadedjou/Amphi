@@ -1,1 +1,40 @@
-::ng-deep .ngx-charts { text { fill: #fff !important; } }
+.chart-ngx-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  height: 90%;
+}
+
+::ng-deep {
+  .ngx-charts { text { fill: #fff !important; } }
+}
+
+ngx-charts-advanced-pie-chart::ng-deep {
+  width: 100%;
+  border: 2px solid white;
+  display: inline-block;
+  box-sizing: border-box; // life saviour
+
+  .total-value {
+    font-size: 30pt;
+  }
+
+  .total-label {
+    padding-left: 10px;
+    opacity: 40%;
+  }
+
+  .item-value {
+    padding-top: 15px;
+    font-size: 15pt !important;
+  }
+
+  .item-label {
+    padding-top: 15px;
+  }
+
+  .item-percent {
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+}

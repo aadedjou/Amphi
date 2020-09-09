@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ExerciceComponent } from './exercice/exercice.component';
 import { InterfaceComponent } from './interface.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { ChartKind, Exercice, Type } from '../models/amphi.models';
 
 @NgModule({
   imports: [

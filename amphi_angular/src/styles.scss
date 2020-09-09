@@ -4,7 +4,7 @@ body {
   background: linear-gradient(to bottom, rgba(70, 70, 70), rgba(25, 25, 25));
   background-repeat: no-repeat; background-attachment: fixed;
   color: #FFFFFF;
-  font-family: Avantgarde, Roboto, "Helvetica Neue", sans-serif;
+  font-family: AvantGarde;
 }
 
 /* text */
@@ -12,7 +12,6 @@ p { font-size: 14pt;}
 
 /* boxes */
 div { float: left; }
-div { border: solid white 0px; }
 .line { width: 100% }
 button { cursor: pointer; }
 .button { cursor: pointer; }
@@ -23,5 +22,3 @@ a:visited { color: rgb(255, 255, 255); }
 
 html, body { height: 100%; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

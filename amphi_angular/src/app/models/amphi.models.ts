@@ -2,20 +2,21 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GoogleChartInterface } from 'ng2-google-charts';
 
 export enum Type {
-  CONTROLLED_INPUT = "Saisie contrôlée",
-  NUMERCIC_ANSWER = "Réponse numérique",
-  ORDERED_LIST = "Liste à ordonner",
-  FREE_ANSWER = "Réponse libre",
-  TRUE_FALSE = "Vrai / Faux",
-  LINKS = "Correspondances",
-  CODE = "CODE",
-  QCM = "QCM",
-  QCU = "QCU"
+  CONTROLLED_INPUT = 0,
+  NUMERCIC_ANSWER = 1,
+  ORDERED_LIST = 2,
+  FREE_ANSWER = 3,
+  TRUE_FALSE = 4,
+  LINKS = 5,
+  CODE = 6,
+  QCM = 7,
+  QCU = 8,
 }
 
 export enum ChartKind {
   Answers,
-  Grader
+  Grader,
+  Percents
 }
 
 export interface Slide {
@@ -41,7 +42,8 @@ export interface Exercice {
   type: Type;
   name: string;
   question: string;
-  reps: {};
+  rightAnswer: any;
+  choices: {};
 }
 
 export interface Ng2Chart {

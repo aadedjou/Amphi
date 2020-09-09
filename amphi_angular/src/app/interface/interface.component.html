@@ -1,6 +1,6 @@
 
 <div style="background-color: #a880ff; height: 50px; width: 100%;">
-  <h2 style="padding-top: 10px;"> Amphi </h2>
+  <h2> Amphi </h2>
 </div>
 
 <div class="container">
@@ -24,7 +24,7 @@
       <ng-container *ngIf="selection">
         <div class="line">
           <h3> {{ selection.name }}
-            <span style="color: rgba(255, 255, 255, 0.6); float: right;"> {{ selection.type }} </span>
+            <span style="color: rgba(255, 255, 255, 0.6); float: right;"> {{ entitled(selection.type) }} </span>
           </h3>
         </div>
         <h2> {{ selection.question }} </h2>
@@ -84,13 +84,14 @@
         </div>
       </div>
 
-      <div style="text-align: left; margin-left: 50px; padding: 20px; background-color: rgba(0,0,0,0.15);">
+      <div style="text-align: left; margin-left: 50px; padding: 20px; background-color: rgba(0, 0, 0, 0.15);">
         <mat-radio-group aria-label="Select Chart Kind" [(ngModel)]="kind">
           <mat-radio-button (click)="setKind(0)" value="0"> Réponses </mat-radio-button>
-          <br>
+            <br>
           <mat-radio-button (click)="setKind(1)" value="1"> Grader </mat-radio-button>
-          <mat-slider thumbLabel min="1" max="25" step="1" value="1" [disabled]="kind == 0" (input)="updateStep($event)"></mat-slider>
-          <br>
+          <mat-slider thumbLabel min="1" max="25" step="1" value="5" [disabled]="kind != 1" (input)="updateStep($event)"></mat-slider>
+            <br>
+          <mat-radio-button (click)="setKind(2)" value="2"> Pourcentages </mat-radio-button>
         </mat-radio-group>
       </div>
     </ng-template>
@@ -99,15 +100,7 @@
   <!-- CURRENT EXERCICE STATS -->
   <ng-container *ngIf="selection != null; else aucunExo">
     <div class="section" >
-      <app-chart-ngx></app-chart-ngx>
-      <!-- <mat-tab-group mat-align-tabs="center">
-        <mat-tab label="Réponses">
-          <app-chart-ngx></app-chart-ngx>
-        </mat-tab>
-        <mat-tab label="Grader">
-          <app-chart-ngx></app-chart-ngx>
-        </mat-tab>
-      </mat-tab-group> -->
+      <app-chart-ngx [exercice]= selection></app-chart-ngx>
     </div>
   </ng-container>
   <ng-template #aucunExo>

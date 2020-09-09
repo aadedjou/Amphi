@@ -7,22 +7,18 @@ export class ExerciceService {
   constructor() {}
 
   private exos: Exercice[] = [
-    { name: 'qcu',   type: Type.QCU,              question: 'combien de slides comporte la présentation ?',               reps: {'2': 0, '3': 0, '4': 0, '5': 0 }},
-    { name: 'qcm',   type: Type.QCM,              question: 'un piéton traverse au rouge. que faire ?',                   reps: { 'j\'accélère': 0, 'je peins le feu en vert': 0, 'j\'ai pas le permis': 0 } },
-    { name: 'code',  type: Type.CODE,             question: 'écrivez la fonction add(a, b) qui additionne deux nombres.', reps: {'error': 0, 'warning': 0, 'bad_return': 0, 'good_return': 0 } },
-    { name: 'links', type: Type.LINKS,            question: 'reliez chaque langage à sa syntaxe.',                        reps: {'Meyer': {'Antoine': 0, 'Claire': 0, 'Samuele': 0 }, 'David': {'Antoine': 0, 'Claire': 0, 'Samuele': 0 }, 'Giraudo': {'Antoine': 0, 'Claire': 0, 'Samuele': 0 }} },
-    { name: 't/f',   type: Type.TRUE_FALSE,       question: 'vas-tu répondre \'faux\' à cette question ?' ,               reps: { 'true': 0, 'false': 0 } },
-    { name: 'free',  type: Type.FREE_ANSWER,      question: '...sinon ta journée ?',                                      reps:    null },   // AnnotationChart
-    { name: 'list',  type: Type.ORDERED_LIST,     question: 'ordonnez les nombres de 20 à 24',                            reps: { '0': { 'Revuz': 0, 'Borie': 0, 'Zip': 0 }, '1': { 'Revuz': 0, 'Borie': 0, 'Zip': 0 }, '2': { 'Revuz': 0, 'Borie': 0, 'Zip': 0 }  } },
-    { name: 'num',   type: Type.NUMERCIC_ANSWER,  question: '27 + 34 ?',                                                  reps:    null },
-    { name: 'ctrl',  type: Type.CONTROLLED_INPUT, question: 'qu\'est ce qui est jaune et qui attend ?',                   reps: {'jonhattan': 0, 'un chinois patient': 0, 'un citron pas mûr': 0, 'serge': 0 }},   // A SUPP PCQ C'EST UN QCU
+    { name: 'ctrl',  type: Type.CONTROLLED_INPUT, rightAnswer: "jonhattan",         question: 'qu\'est ce qui est jaune et qui attend ?',                   choices: {'jonhattan': 0, 'un chinois patient': 0, 'un citron pas mûr': 0, 'serge': 0 }},   // A SUPP PCQ C'EST UN QCU
+    { name: 'num',   type: Type.NUMERCIC_ANSWER,  rightAnswer: 61,                  question: '27 + 34 ?',                                                  choices: null },
+    { name: 'list',  type: Type.ORDERED_LIST,     rightAnswer: [20,21,22,23],       question: 'ordonnez les nombres de 20 à 23',                            choices: { } },
+    { name: 'free',  type: Type.FREE_ANSWER,      rightAnswer: "",                  question: '...sinon ta journée ?',                                      choices: null },   // AnnotationChart
+    { name: 't/f',   type: Type.TRUE_FALSE,       rightAnswer: "oui",               question: 'vas-tu répondre \'non\' à cette question ?' ,                choices: { 'true': 0, 'false': 0 } },
+    { name: 'links', type: Type.LINKS,            rightAnswer: [{0:2},{1:0},{2:1}], question: 'reliez chaque langage à sa syntaxe.',                        choices: { } },
+    { name: 'code',  type: Type.CODE,             rightAnswer: 0,                   question: 'écrivez la fonction add(a, b) qui additionne deux nombres.', choices: { 'error': 0, 'warning': 0, 'bad_return': 0, 'good_return': 0 } },
+    { name: 'qcm',   type: Type.QCM,              rightAnswer: 3,                   question: 'un piéton traverse au rouge. que faire ?',                   choices: { 'j\'accélère': 0, 'je peins le feu en vert': 0, 'j\'ai pas le permis': 0 } },
+    { name: 'qcu',   type: Type.QCU,              rightAnswer: 5,                   question: 'combien de slides comporte la présentation ?',               choices: { '2': 0, '3': 0, '4': 0, '5': 0 }},
   ];
 
   getExercices() {
     return this.exos;
-  }
-
-  add(name: string, type: Type, question: string) {
-    this.exos.push({ name: name, type: type, question: question, reps: null });
   }
 }

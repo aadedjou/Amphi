@@ -1,9 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
+import { ChartKind, Exercice, Type } from '../../../models/amphi.models';
 import { ChartService } from './chart-ngx.service';
-import { HostListener } from "@angular/core";
 import { Subject } from 'rxjs';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-chart-ngx',
@@ -12,9 +10,9 @@ import { stringify } from 'querystring';
 })
 
 export class ChartComponent implements OnInit {
-  @HostListener('window:resize', ['$event'])
+  @Input() exercice : Exercice;
 
-  onResize(event?) {
+  @HostListener('window:resize', ['$event']) onResize(event?) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
   }
@@ -39,19 +37,19 @@ export class ChartComponent implements OnInit {
   yAxisLabel = 'Nombre de réponses';
 
   colorScheme = {
-    domain: [ 'rgba(250, 250, 250, 1)' , 'rgba(250, 250, 250, 0.8)' ]
+    domain: [ 'rgba(250, 250, 250, 0.75)' , 'rgba(250, 250, 250, 0.9)' ]
   };
 
   constructor(
-    private cdr: ChangeDetectorRef,
-    private readonly chartService: ChartService
+    // private cdr: ChangeDetectorRef,
+    public readonly chartService: ChartService
   ) {
     Object.assign(this, this.chartService.getAnswers());
-    //this.chartService.setAnswers(chartService.getAnswers());
+    // this.chartService.setAnswers(chartService.getAnswers());
     this.onResize();
   }
 
-  // Update function
+  // update function
   updateChart() {
     this.update$.next(true);
   }
@@ -73,34 +71,15 @@ export class ChartComponent implements OnInit {
     return 0;
   }
 
-  private addAnswer(answer : number) {
-    var quit = false;
-
-    this.chartService.getAnswers().forEach((data: {name, value}) => {
-      if (data.name == answer) {
-        data.value += 1;
-        quit = true;
-      }
-    });
-    if (!quit) this.chartService.getAnswers().push( {name: answer, value: 1} );
-  }
-
-  private addRandomData() {
-    for (let i = 0; i < 10; i++) {
-      var randomValue = 61 + (-25 +  Math.round(Math.random() * 50));
-      this.addAnswer(randomValue);
-    }
-  };
-
   private reloadChart() {
     this.chartService.reload();
     this.chartService.getAnswers().sort(this.sortData);
   }
 
   public refresh() {
-    this.addRandomData();
+    this.chartService.addRandomData();
     this.reloadChart();
-    //this.cdr.detectChanges();
+    // this.cdr.detectChanges();
   }
 
   public data() {
