@@ -1,4 +1,3 @@
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GoogleChartInterface } from 'ng2-google-charts';
 
 export enum Type {
@@ -54,5 +53,10 @@ export interface Ng2Chart {
 export interface Chart {
   exercice: Exercice;
   chart : NgxChart;
+}
+
+export interface Data {
+  name: string;
+  value: number;
 }
 

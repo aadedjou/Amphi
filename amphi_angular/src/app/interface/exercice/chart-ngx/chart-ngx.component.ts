@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
-import { ChartKind, Exercice, Type } from '../../../models/amphi.models';
+import { Exercice, Data } from '../../../models/amphi.models';
 import { ChartService } from './chart-ngx.service';
 import { Subject } from 'rxjs';
 
@@ -62,7 +62,7 @@ export class ChartComponent implements OnInit {
     console.log(event);
   }
 
-  private sortData(data1 : {name, value}, data2 : {name, value}) {
+  private sortData(data1 : Data, data2 : Data) {
     var a : number = + data1.name;
     var b : number = + data2.name;
 

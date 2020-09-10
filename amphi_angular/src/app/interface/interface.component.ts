@@ -11,6 +11,7 @@ import { SlideService } from './slide/slide.service';
 })
 
 export class InterfaceComponent implements OnInit {
+  displayStats : boolean = false;
   selection : Exercice = null;
   exercices : Exercice[];
   slides : Slide[];
@@ -27,7 +28,7 @@ export class InterfaceComponent implements OnInit {
     this.kind = this.chartService.kind;
     this.slides = this.slideService.getSlide();
     this.exercices = this.exoService.getExercices();
-    this.selection = this.exercices[Type.TRUE_FALSE];
+    this.selection = this.exercices[Type.QCM];
     this.chartService.resetChart(this.selection);
   }
 
@@ -45,8 +46,13 @@ export class InterfaceComponent implements OnInit {
   }
 
   displayExercice(exercice : Exercice) {
+    this.displayStats = false;
     this.selection = exercice;
     this.chartService.resetChart(exercice);
+  }
+
+  refreshStats() {
+    this.chartService.reload();
   }
 
   updateStep(event: any) {
