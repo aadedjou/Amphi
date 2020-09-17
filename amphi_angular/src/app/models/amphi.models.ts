@@ -13,9 +13,9 @@ export enum Type {
 }
 
 export enum ChartKind {
-  Answers,
-  Grader,
-  Percents
+  ANSWERS = 0,
+  GRADER = 1,
+  PERCENTS = 2
 }
 
 export interface Slide {

@@ -1,1 +1,9 @@
-<button mat-raised-button color="accent"> {{ exercice.name }} </button>
+  <div class="line float-left">
+     <button (mouseover)="mouseOver()" (mouseout)="mouseOut()" mat-flat-button color="purple">
+      {{ exercice.name }}
+    </button>
+    <button *ngIf="displayPlayButton" mat-icon-button color="purple">
+      <i class="material-icons"> play_circle_filled </i>
+    </button>
+  </div>
+

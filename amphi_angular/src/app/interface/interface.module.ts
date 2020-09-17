@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { InterfaceComponent } from './interface.component';
+import { ExerciceComponent } from './exercice/exercice.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatSliderModule } from '@angular/material/slider';
 import { SlideComponent } from './slide/slide.component';
 import { ChartComponent } from './exercice/chart-ngx/chart-ngx.component';
 import { MatRadioModule } from '@angular/material/radio';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { ExerciceComponent } from './exercice/exercice.component';
-import { InterfaceComponent } from './interface.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     MatButtonModule,
     MatSliderModule,
     MatRadioModule,
+    MatTableModule,
     MatTabsModule,
     FormsModule,
   ],
@@ -37,6 +39,6 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
   ],
   exports: [
     InterfaceComponent
-  ]
+  ],
 })
 export class InterfaceModule {}

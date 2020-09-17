@@ -21,23 +21,8 @@ export class ChartComponent implements OnInit {
   screenHeight : number;
   update$: Subject<any> = new Subject();
 
-  axisFormat(val) {
-    return val %5 == 0 ? String(val) : "";
-  }
-  size: any[] = [700, 400];
-
-  // options
-  gradient = false;
-  showXAxis = true;
-  showYAxis = true;
-  showLegend = false;
-  showXAxisLabel = true;
-  showYAxisLabel = false;
-  xAxisLabel = 'Réponses';
-  yAxisLabel = 'Nombre de réponses';
-
   colorScheme = {
-    domain: [ 'rgba(250, 250, 250, 0.75)' , 'rgba(250, 250, 250, 0.9)' ]
+    domain: [ 'rgba(250, 250, 250, 0.85)' , 'rgba(250, 250, 250, 0.9)' ]
   };
 
   constructor(

@@ -1,130 +1,143 @@
+<span class="grid-container">
 
-<div style="background-color: #a880ff; height: 50px; width: 100%;">
-  <h2> Amphi </h2>
-</div>
-
-<div class="container">
-  <!-- CURRENT SLIDE / EXERCICE -->
-  <ng-container *ngIf="selection == null; then currentSlide else currentExo"></ng-container>
-  <ng-template #currentSlide>
-    <div class="section">
-      <h2> {{ slides[index].title + " " + index }} </h2>
-      <p> {{ slides[index].contenu }} </p>
-    </div>
-  </ng-template>
-  <ng-template #currentSlideDark>
-    <div class="section" style="background-color: rgba(255, 255, 255, 0.2); color: rgba(255,255,255,0.5);">
-      <h2> {{ slides[index].title + " " + index }} </h2>
-      <p> {{ slides[index].contenu }} </p>
-    </div>
-  </ng-template>
-
-  <ng-template #currentExo>
-    <ng-container *ngIf="displayStats; then afficheStat else afficheExo"></ng-container>
-  </ng-template>
-
-  <ng-template #afficheExo>
-    <div class="section">
-      <ng-container *ngIf="selection">
-        <div class="line">
-          <h3> {{ selection.name }}
-            <span style="color: rgba(255, 255, 255, 0.6); float: right;"> {{ entitled(selection.type) }} </span>
-          </h3>
-        </div>
-        <h2> {{ selection.question }} </h2>
-      </ng-container>
-    </div>
-  </ng-template>
-
-  <!-- NEXT SLIDE -->
-  <ng-container *ngIf="(0 <= index && index < slides.length-1); else finPresentation">
-    <ng-container *ngIf="selection == null; else currentSlideDark">
-      <div class="section" style="background-color: rgba(255, 255, 255, 0.2); color: rgba(255,255,255,0.5);">
-        <h2> {{ slides[index+1].title + " " + (index+1) }} </h2>
-        <p> {{ slides[index+1].contenu }} </p>
-      </div>
-    </ng-container>
-  </ng-container>
-  <ng-template #finPresentation>
-    <div class="blank">
-      <div class="line" style="height: 30%;"> </div>
-      <h2> FIN DE LA PRESENTATION </h2>
-    </div>
-  </ng-template>
-
-
-  <!-- CONTROLLER -->
-  <div class="section">
-    <ng-container *ngIf="selection == null; else backToSlides">
-      <div class="line">
-        <!-- bouton gauche -->
-        <ng-container *ngIf="(index > 0)">
-          <button mat-mini-fab color="basic" (click)="prevSlide()" style="float: left;">
-            <i class="material-icons"> chevron_left </i>
-          </button>
-        </ng-container>
-        <!-- bouton droite -->
-        <ng-container *ngIf="(index < slides.length -1)">
-          <button mat-mini-fab color="basic" (click)="nextSlide()" style="float: right;">
-            <i class="material-icons"> chevron_right </i>
-          </button>
-        </ng-container>
-      </div>
-      <!-- exos -->
-      <ng-container *ngFor="let exercice of exercices">
-        <app-exercice [exercice]= exercice (click)="displayExercice(exercice)"></app-exercice>
-      </ng-container>
-    </ng-container>
-
-    <ng-template #backToSlides>
-      <div class="line" style="position: relative;">
-        <!-- boutton retour -->
-        <button mat-mini-fab color="accent" (click)="selection = null" style="float: left; margin-right: 50px; color: #918a26;">
-          <i class="material-icons"> keyboard_return </i>
-        </button>
-
-        <div style="position: absolute; left: 50px; bottom: 0; font-size: 20px; padding-bottom: 10px;">
-          Retour à la présentation
-        </div>
-      </div>
-
-      <!-- kind select -->
-      <div style="text-align: left; margin-left: 50px; padding: 20px; background-color: rgba(0, 0, 0, 0.15);">
-        <mat-radio-group aria-label="Select Chart Kind" [(ngModel)]="kind">
-          <mat-radio-button (click)="setKind(0)" value="0"> Réponses </mat-radio-button>
-            <br>
-          <mat-radio-button (click)="setKind(1)" value="1"> Grader </mat-radio-button>
-          <mat-slider thumbLabel min="1" max="25" step="1" value="5" [disabled]="kind != 1" (input)="updateStep($event)"></mat-slider>
-            <br>
-          <mat-radio-button (click)="setKind(2)" value="2"> Pourcentages </mat-radio-button>
-        </mat-radio-group>
-      </div>
-
-      <div style="text-align: left; margin-left: 50px; padding: 20px;">
-        <mat-slide-toggle color="accent" [(ngModel)]="displayStats">
-          Diffuser les statistiques
-        </mat-slide-toggle>
-      </div>
-
-    </ng-template>
+  <div class="head">
+    <h2> Amphi </h2>
   </div>
 
+  <!-- CURRENT SLIDE / EXERCICE -->
+  <span class="zone1">
+    <ng-container *ngIf="selection == null; then currentSlide else currentExo"></ng-container>
+    <ng-template #currentSlide>
+      <div class="interface-panel">
+        <h2> {{ slides[index].title + " " + index }} </h2>
+        <p> {{ slides[index].contenu }} </p>
+      </div>
+    </ng-template>
+    <ng-template #currentSlideDisabled>
+      <div class="interface-panel disabled">
+        <h2> {{ slides[index].title + " " + index }} </h2>
+        <p> {{ slides[index].contenu }} </p>
+      </div>
+    </ng-template>
+
+    <ng-template #currentExo>
+      <ng-container *ngIf="displayStats; then afficheStats else afficheExo"></ng-container>
+    </ng-template>
+
+    <ng-template #afficheExo>
+      <div class="interface-panel">
+        <ng-container *ngIf="selection">
+          <div class="line">
+            <h3> {{ selection.name }}
+              <span class="float-right"> {{ entitled(selection.type) }} </span>
+            </h3>
+          </div>
+          <h2> {{ selection.question }} </h2>
+        </ng-container>
+      </div>
+    </ng-template>
+  </span>
+
+  <!-- NEXT SLIDE -->
+  <span class="zone2">
+    <ng-container *ngIf="(0 <= index && index < slides.length-1); else finPresentation">
+      <ng-container *ngIf="selection == null; else currentSlideDisabled">
+        <div class="interface-panel disabled">
+          <h2> {{ slides[index+1].title + " " + (index+1) }} </h2>
+          <p> {{ slides[index+1].contenu }} </p>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-template #finPresentation>
+      <div class="interface-panel blank">
+        <div class="line"> </div>
+        <h2> FIN DE LA PRESENTATION </h2>
+      </div>
+    </ng-template>
+  </span>
+
+  <!-- CONTROLLER -->
+  <span class="zone3">
+    <div class="interface-panel">
+      <ng-container *ngIf="selection == null; else backToSlides">
+        <div class="line bottom-space">
+          <!-- bouton gauche -->
+          <div class="float-left bottom-space">
+            <button [disabled]="(index <= 0)" mat-mini-fab color="basic" (click)="prevSlide()" class="float-left">
+              <i class="material-icons"> chevron_left </i>
+            </button>
+            <span class="button-label"> Slide précédente </span>
+          </div>
+          <!-- bouton droite -->
+          <div class="float-right bottom-space">
+            <button [disabled]="(index >= slides.length -1)" mat-mini-fab color="basic" (click)="nextSlide()" class="float-right">
+              <i class="material-icons"> chevron_right </i>
+            </button>
+            <span class="button-label"> Slide suivante </span>
+          </div>
+        </div>
+        <!-- exos -->
+        <h2 class="float-left"> Exercices </h2>
+        <div class="dark exo-menu ">
+          <ng-container *ngFor="let exercice of exercices">
+            <app-exercice [exercice]="exercice" (click)="displayExercice(exercice)"></app-exercice>
+          </ng-container>
+        </div>
+      </ng-container>
+
+      <!-- boutton retour -->
+      <ng-template #backToSlides>
+        <div class="line">
+          <div class="float-left bottom-space">
+            <button mat-mini-fab color="accent" (click)="selection = null">
+              <i class="material-icons"> keyboard_return </i>
+            </button>
+            <span class="button-label">Retour à la présentation</span>
+          </div>
+        </div>
+
+        <!-- kind select -->
+        <div class="menu-container">
+          <div class="dark stat-menu">
+            <mat-radio-group *ngFor="let chartKind of kinds" [(ngModel)]="kind">
+              <div class="line">
+                <mat-radio-button (click)="updateKind(chartKind)" [value]="chartKind" [checked]="kind == chartKind">
+                  {{ kindName(chartKind) }}
+                </mat-radio-button>
+                <ng-container *ngIf="chartKind == 1">
+                  <mat-slider thumbLabel min="1" max="25" step="1" value="5" [disabled]="kind != 1" (input)="updateStep($event)"></mat-slider>
+                </ng-container>
+              </div>
+            </mat-radio-group>
+          </div>
+
+          <!-- stats diffuseur -->
+          <mat-slide-toggle color="accent" [(ngModel)]="displayStats">
+            Diffuser les statistiques
+          </mat-slide-toggle>
+        </div>
+      </ng-template>
+    </div>
+  </span>
+
   <!-- CURRENT EXERCICE STATS -->
-  <ng-container *ngIf="selection == null; then aucunExo else afficheStat"></ng-container>
-  <ng-template #afficheStat>
-    <div class="section" >
-      <app-chart-ngx [exercice]= selection></app-chart-ngx>
+  <span class="zone4">
+    <ng-container *ngIf="selection == null; then aucunExo else afficheStats"></ng-container>
+    <ng-template #afficheStats>
+      <div class="interface-panel">
+        <app-chart-ngx [exercice]= selection></app-chart-ngx>
+        <button class="float-left" mat-icon-button color="accent" (click)="refreshStats()">
+          <i class="material-icons"> refresh </i>
+        </button>
+      </div>
+    </ng-template>
 
-      <button mat-icon-button color="accent" (click)="refreshStats()" style="float: left;">
-        <i class="material-icons"> refresh </i>
-      </button>
-    </div>
-  </ng-template>
+    <ng-template #aucunExo>
+      <div class="interface-panel blank">
+        <div class="line"> </div>
+        <h2> AUCUN EXERCICE EN COURS </h2>
+      </div>
+    </ng-template>
+  </span>
+</span>
 
-  <ng-template #aucunExo>
-    <div class="blank">
-      <div class="line" style="height: 30%;"> </div>
-      <h2> AUCUN EXERCICE EN COURS </h2>
-    </div>
-  </ng-template>
-</div>

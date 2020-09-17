@@ -4,15 +4,15 @@ import { ChartKind, Type, Exercice, Data } from '../../../models/amphi.models';
 @Injectable({ providedIn: 'root' })
 
 export class ChartService {
-  step : number = 4;
-  kind : ChartKind = ChartKind.Grader;
+  step : number = 5;
+  kind : ChartKind = ChartKind.GRADER;
   exercice : Exercice = { name: "", type: Type.FREE_ANSWER, question: "", rightAnswer: "", choices: {} }; // cleaner initializer;
 
   grader: Data[] = [];
   answers: Data[] = [];
   percents: Data[] = [];
   database : any[] = [];
-  customColors : any[] = [];
+  customColors : { name: string, value : string }[] = [];
 
   constructor() {
     this.resetChart(this.exercice);
@@ -23,11 +23,11 @@ export class ChartService {
   intToKind(serial: number) : ChartKind {
     switch (serial) {
       case 0:
-        return ChartKind.Answers;
+        return ChartKind.ANSWERS;
       case 1:
-        return ChartKind.Grader;
+        return ChartKind.GRADER;
       case 2:
-        return ChartKind.Percents;
+        return ChartKind.PERCENTS;
     }
   }
 
@@ -38,11 +38,11 @@ export class ChartService {
 
   public getChartData() : any[] {
     switch (this.kind) {
-      case ChartKind.Answers:
+      case ChartKind.ANSWERS:
         return this.answers;
-      case ChartKind.Grader:
+      case ChartKind.GRADER:
         return this.grader;
-      case ChartKind.Percents:
+      case ChartKind.PERCENTS:
         return this.percents;
     }
   }
@@ -53,15 +53,14 @@ export class ChartService {
 
   private wantedResult() {
     switch (this.kind) {
-      case ChartKind.Answers:
+      case ChartKind.ANSWERS:
         return String(this.getRightAnswer());
-      case ChartKind.Grader:
+      case ChartKind.GRADER:
         return "100";
-      case ChartKind.Percents:
+      case ChartKind.PERCENTS:
         return "bonnes réponses";
     }
   }
-
 
   // setters
   public setKind(kind : ChartKind) {
@@ -96,9 +95,19 @@ export class ChartService {
   }
 
   private sortData(data1 : Data, data2 : Data) {
-    var a : number = + data1.name;
-    var b : number = + data2.name;
+    var a : number = +data1.name;
+    var b : number = +data2.name;
 
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+  }
+  private sortCode(data1 : Data, data2 : Data) {
+    var a : number = +data1.name.split(" ")[0];
+    var b : number = +data2.name.split(" ")[0];
+
+    if (Number.isNaN(a)) return -1;
+    if (Number.isNaN(b)) return 1;
     if (a < b) return -1;
     if (a > b) return 1;
     return 0;
@@ -157,6 +166,15 @@ export class ChartService {
             });
             break;
 
+          case Type.CODE:
+            var compile : boolean = this.randint(1, 25) != 1;
+            randomAnswer = {
+              'compile': compile,
+              'warnings': this.randint(1, 5) == 1 ? 0 : this.randint(1, 10),
+              'return': !compile ? false : this.randint(1, 2) == 1
+            };
+            break;
+
           case Type.NUMERCIC_ANSWER:
           default:
             randomAnswer = this.getRightAnswer() + this.randint(-25, 25);
@@ -168,13 +186,13 @@ export class ChartService {
   };
 
   // update
-  private updateOthers() : void {
+  private updateOthers() {
     this.updateAnswers();
     this.updateGrader();
     this.updatePercents();
   }
 
-  private updateAnswers() : void {
+  private updateAnswers() {
     this.answers = [];
 
     switch (this.exercice.type) {
@@ -185,12 +203,28 @@ export class ChartService {
           });
         });
         break;
+
+      case Type.CODE:
+        this.database.forEach((data: any) => {
+          var answer = data.name;
+          if (answer.compile) {
+            this.addValue(
+              answer.return ? 'Bon return' : answer.warnings + ' warning' + (answer.warnings == 1 ? '' : 's'),
+              this.answers
+            );
+          } else {
+            this.addValue('Ne compile pas', this.answers);
+          }
+        });
+        this.answers.sort(this.sortCode);
+        break;
+
       default:
         this.answers = this.database;
     }
   }
 
-  private updateGrader() : void {
+  private updateGrader() {
     var quit = false;
 
     this.grader = [];
@@ -225,7 +259,18 @@ export class ChartService {
           // if negative grade, set to 0
           if (newGrade < 0) newGrade = 0;
           else newGrade = this.stepped(newGrade);
+          break;
 
+        case Type.CODE:
+          var answer = data.name;
+
+          newGrade = answer.return ? 100 : (answer.compile ? 25 : 0);
+          newGrade -= answer.warnings * 10;
+
+
+          // if negative grade, set to 0
+          if (newGrade < 0) newGrade = 0;
+          else newGrade = this.stepped(newGrade);
           break;
 
         default:
@@ -239,7 +284,7 @@ export class ChartService {
     });
   }
 
-  private updatePercents() : void {
+  private updatePercents() {
     this.percents = [ { name: "autres réponses", value: 0 } ];
 
     this.database.forEach((data: Data) => {
@@ -249,32 +294,49 @@ export class ChartService {
         this.percents.push( { name: "bonnes réponses", value: data.value } );
       }
     });
+    // QCM : 1 percentage for each answer
   }
 
-  private updateCustomColors() : void {
+  private updateCustomColors() {
     this.customColors = [];
 
-    if (this.exercice.type == Type.QCM && this.kind == ChartKind.Answers) {
-      this.exercice.rightAnswer.forEach((answer : string) => {
-        this.customColors.push({
-          name: this.formatString(answer),
-          value: 'rgb(200, 150, 250)'
-        })
-      });
-      console.log(this.customColors)
-    }
-    else {
+    if (this.kind == ChartKind.ANSWERS) {
+      switch (this.exercice.type) {
+        case Type.QCM:
+          this.exercice.rightAnswer.forEach((answer : string) => {
+            this.customColors.push({
+              name: this.formatString(answer),
+              value: 'rgb(175, 150, 250)'
+            })
+          });
+          break;
+
+        case Type.CODE:
+          this.customColors.push({
+            name: 'Bon return',
+            value: 'rgb(175, 150, 250)'
+          });
+          break;
+
+        default:
+          this.customColors.push({
+            name: this.wantedResult(),
+            value: 'rgb(175, 150, 250)'
+          });
+      }
+    } else {
       this.customColors.push({
-          name: this.wantedResult(),
-          value: 'rgb(200, 150, 250)'
+        name: this.wantedResult(),
+        value: 'rgb(175, 150, 250)'
       });
     }
   }
 
-  public reload() : void {
+  public reload() {
     this.addRandomData();
     this.database = [...this.database];
     this.database.sort(this.sortData);
     this.updateOthers();
+    this.updateCustomColors();
   }
 }

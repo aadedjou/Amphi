@@ -1,0 +1,2 @@
+- last slide -> ask to close activity
+- different colors for types

@@ -1,5 +1,5 @@
 import { Slide, Exercice, ChartKind, Type } from '../models/amphi.models';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ExerciceService } from './exercice/exercice.service';
 import { ChartService } from './exercice/chart-ngx/chart-ngx.service';
 import { SlideService } from './slide/slide.service';
@@ -7,15 +7,18 @@ import { SlideService } from './slide/slide.service';
 @Component({
   selector: 'app-interface',
   templateUrl: './interface.component.html',
-  styleUrls: ['./interface.component.scss']
+  styleUrls: ['./interface.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class InterfaceComponent implements OnInit {
+
   displayStats : boolean = false;
   selection : Exercice = null;
   exercices : Exercice[];
   slides : Slide[];
-  kind : ChartKind = 0;
+  kinds : ChartKind[];
+  kind : ChartKind;
   index : number = 0;
 
   constructor(
@@ -26,15 +29,13 @@ export class InterfaceComponent implements OnInit {
 
   ngOnInit() {
     this.kind = this.chartService.kind;
+    this.kinds = Object.keys(ChartKind)
+      .filter(k => typeof ChartKind[k as any] != "number")
+      .map(k => +k);
     this.slides = this.slideService.getSlide();
     this.exercices = this.exoService.getExercices();
-    this.selection = this.exercices[Type.QCM];
+    this.selection = null; // this.exercices[Type.CODE];
     this.chartService.resetChart(this.selection);
-  }
-
-  setKind(serial : number) {
-    var kind = this.chartService.intToKind(serial);
-    this.chartService.setKind(kind);
   }
 
   nextSlide() {
@@ -46,7 +47,6 @@ export class InterfaceComponent implements OnInit {
   }
 
   displayExercice(exercice : Exercice) {
-    this.displayStats = false;
     this.selection = exercice;
     this.chartService.resetChart(exercice);
   }
@@ -55,6 +55,9 @@ export class InterfaceComponent implements OnInit {
     this.chartService.reload();
   }
 
+  updateKind(kind : ChartKind) {
+    this.chartService.setKind(kind);
+  }
   updateStep(event: any) {
     this.chartService.setStep(event.value);
   }
@@ -79,6 +82,17 @@ export class InterfaceComponent implements OnInit {
         return "QCM";
       case Type.QCU:
         return "QCU";
+    }
+  }
+
+  kindName(kind : number) : string {
+    switch (kind) {
+      case ChartKind.ANSWERS:
+        return "Réponses";
+      case ChartKind.GRADER:
+        return "Grader";
+      case ChartKind.PERCENTS:
+        return "Pourcentages";
     }
   }
 }

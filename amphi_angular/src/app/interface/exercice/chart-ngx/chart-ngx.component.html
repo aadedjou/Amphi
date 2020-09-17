@@ -5,15 +5,15 @@
     <ngx-charts-bar-vertical
       [scheme]="colorScheme"
       [results]="data()"
-      [gradient]="gradient"
-      [legend]="showLegend"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
+      [gradient]="true"
+      [legend]="false"
+      [xAxis]="true"
+      [yAxis]="true"
       [showXAxisLabel]="false"
-      [showYAxisLabel]="showYAxisLabel"
+      [showYAxisLabel]="false"
       [customColors]="customColors()"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
+      [xAxisLabel]="'Réponses'"
+      [yAxisLabel]="'Nb. de réponses'"
       [barPadding]="0"
 
       (select)="onSelect($event)">

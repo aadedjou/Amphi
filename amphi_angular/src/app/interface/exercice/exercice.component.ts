@@ -9,9 +9,18 @@ import { Exercice } from '../../models/amphi.models';
 
 export class ExerciceComponent implements OnInit {
   @Input() exercice: Exercice;
+  displayPlayButton : boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  mouseOver() {
+    this.displayPlayButton = true;
+  }
+
+  mouseOut() {
+    this.displayPlayButton = false;
   }
 }

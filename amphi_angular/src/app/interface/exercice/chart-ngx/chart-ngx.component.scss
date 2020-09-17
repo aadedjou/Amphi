@@ -9,8 +9,13 @@
   .ngx-charts { text { fill: #fff !important; } }
 }
 
+ngx-charts-bar-vertical::ng-deep {
+  height: 0px;
+}
+
 ngx-charts-advanced-pie-chart::ng-deep {
   width: 100%;
+  height: 0px;
   display: inline-block;
   box-sizing: border-box; // life saviour
 
