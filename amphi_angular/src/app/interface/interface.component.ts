@@ -12,7 +12,7 @@ import { SlideService } from './slide/slide.service';
 })
 
 export class InterfaceComponent implements OnInit {
-
+  prof_name : string = "Coumes";
   displayStats : boolean = false;
   selection : Exercice = null;
   exercices : Exercice[];
@@ -34,16 +34,23 @@ export class InterfaceComponent implements OnInit {
       .map(k => +k);
     this.slides = this.slideService.getSlide();
     this.exercices = this.exoService.getExercices();
-    this.selection = null; // this.exercices[Type.CODE];
+    this.selection = null; //this.exercices[Type.CODE];
     this.chartService.resetChart(this.selection);
   }
 
   nextSlide() {
     if (this.index < this.slides.length) this.index++;
   }
-
   prevSlide() {
     if (this.index >= 0) this.index--;
+  }
+  navigateSlides($event: KeyboardEvent) {
+    console.log($event.code);
+    if ($event.code === "Left") {
+      this.prevSlide();
+    } else if ($event.code === "Right") {
+      this.nextSlide();
+    }
   }
 
   displayExercice(exercice : Exercice) {
