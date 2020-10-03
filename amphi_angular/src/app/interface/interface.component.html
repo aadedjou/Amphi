@@ -1,54 +1,39 @@
 <span class="grid-container">
-
   <div class="head">
     <h2> Amphi </h2>
   </div>
 
   <!-- CURRENT SLIDE / EXERCICE -->
   <div class="zone1">
-    <div class="interface-panel">
-      <ng-container *ngIf="selection == null; then currentSlide else currentExo"></ng-container>
-      <ng-template #currentSlide>
-        <h2> {{ slides[index].title + " " + index }} </h2>
-        <p> {{ slides[index].contenu }} </p>
-      </ng-template>
+    <ng-container *ngIf="selection == null; then currentSlide else currentExo"></ng-container>
 
-      <ng-template #currentExo>
-        <ng-container *ngIf="displayStats; then afficheStats else afficheExo"></ng-container>
-      </ng-template>
-    </div>
+    <ng-template #currentSlide>
+      <app-slide [slide]="slides[index]"></app-slide>
+    </ng-template>
 
+    <ng-template #currentExo>
+      <ng-container *ngIf="displayStats; then afficheStats else afficheExo"></ng-container>
+    </ng-template>
 
     <ng-template #afficheExo>
-      <ng-container *ngIf="selection">
-        <div class="line bottom-space">
-          <div class="spacer"></div>
-          <div class="spacer"></div>
-          <h3 class="flex"> {{ selection.name }} </h3>
-          <div class="spacer"></div>
-          <h3 class="flex disabled"> {{ entitled(selection.type) }} </h3>
-        </div>
-        <h2> {{ selection.question }} </h2>
-      </ng-container>
+      <app-exercice [exercice]="selection" ></app-exercice>
     </ng-template>
   </div>
 
   <!-- NEXT SLIDE -->
   <div class="zone2">
-    <ng-container *ngIf="(0 <= index && index < slides.length-1); else finPresentation">
-      <div class="interface-panel disabled">
-        <ng-container *ngIf="selection == null; else currentSlide">
-
-          <h2> {{ slides[index+1].title + " " + (index+1) }} </h2>
-          <p> {{ slides[index+1].contenu }} </p>
-        </ng-container>
+    <ng-container *ngIf="(index >= slides.length-1); else presentation">
+      <div class="interface-panel blank">
+        <div class="center">
+          <h2 class="center"> FIN DE LA PRESENTATION </h2>
+        </div>
       </div>
     </ng-container>
-    <ng-template #finPresentation>
-      <div class="interface-panel blank">
-        <div class="line center"> </div>
-        <h2> FIN DE LA PRESENTATION </h2>
-      </div>
+
+    <ng-template #presentation>
+      <ng-container *ngIf="selection == null; else currentSlide">
+        <app-slide [slide]="slides[index+1]" [class]="'disabled'"></app-slide>
+      </ng-container>
     </ng-template>
   </div>
 
@@ -56,26 +41,26 @@
   <div class="zone3">
     <div class="interface-panel">
       <ng-container *ngIf="selection == null; else backToSlides">
-
-          <div class="line">
-            <!-- bouton gauche -->
-            <div class="flex">
-              <button [disabled]="(index <= 0)" mat-mini-fab color="basic" (click)="prevSlide()">
-                <i class="material-icons"> chevron_left </i>
-              </button>
-              <span class="button-label" [ngClass]="(index <= 0) ? 'disabled' : ''"> Slide précédente </span>
-            </div>
-            <!-- space -->
-            <div class="spacer"></div>
-            <!-- bouton droite -->
-            <div class="flex">
-              <span class="button-label" [ngClass]="(index >= slides.length -1) ? 'disabled' : ''"> Slide suivante </span>
-              <button [disabled]="(index >= slides.length -1)" mat-mini-fab color="basic" (click)="nextSlide()">
-                <i class="material-icons"> chevron_right </i>
-              </button>
-            </div>
+        <div class="line contained header">
+          <!-- bouton gauche -->
+          <div class="flex" style="position: relative;">
+            <button [disabled]="(index <= 0)" mat-mini-fab color="basic" (click)="prevSlide()">
+              <i class="material-icons"> chevron_left </i>
+            </button>
+            <span class="button-label" [ngClass]="(index <= 0) ? 'disabled' : ''"> Slide précédente </span>
+          </div>
+          <!-- space -->
+          <div class="spacer"></div>
+          <!-- bouton droite -->
+          <div class="flex">
+            <span class="button-label" [ngClass]="(index >= slides.length -1) ? 'disabled' : ''"> Slide suivante </span>
+            <button [disabled]="(index >= slides.length -1)" mat-mini-fab color="basic" (click)="nextSlide()">
+              <i class="material-icons"> chevron_right </i>
+            </button>
+          </div>
         </div>
-        <div class="line">
+
+        <div class="line contained bottom-space">
           <div class="spacer"></div>
           <h2 class="flex disabled"> Bienvenue, M. </h2>
           <div style="width: 5px;"></div>
@@ -92,7 +77,7 @@
 
         <div class="dark exo-menu">
           <ng-container *ngFor="let exercice of exercices">
-            <app-exercice [exercice]="exercice" (click)="displayExercice(exercice)"></app-exercice>
+            <app-exercice-button [exercice]="exercice" (click)="displayExercice(exercice)"></app-exercice-button>
           </ng-container>
         </div>
       </ng-container>
@@ -137,7 +122,7 @@
     <div class="interface-panel blank">
       <ng-container *ngIf="selection == null; then aucunExo else afficheStats"></ng-container>
       <ng-template #afficheStats>
-        <app-chart-ngx [exercice]= selection></app-chart-ngx>
+        <app-chart-ngx [exercice]= "selection"></app-chart-ngx>
         <button class="float-left" mat-icon-button color="accent" (click)="refreshStats()">
           <i class="material-icons"> refresh </i>
         </button>
@@ -151,4 +136,3 @@
     </ng-template>
   </div>
 </span>
-

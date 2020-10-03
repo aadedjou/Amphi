@@ -1,9 +1,8 @@
-  <div class="float-left">
-     <button (mouseover)="mouseOver()" (mouseout)="mouseOut()" mat-flat-button color="purple">
-      {{ exercice.name }}
-    </button>
-    <button *ngIf="displayPlayButton" mat-icon-button color="purple-alpha">
-      <i class="material-icons"> play_circle_filled </i>
-    </button>
-  </div>
-
+<div class="line bottom-space">
+  <div class="spacer"></div>
+  <div class="spacer"></div>
+  <h3 class="flex"> {{ exercice.name }} </h3>
+  <div class="spacer"></div>
+  <h3 class="flex disabled"> {{ entitled(exercice.type) }} </h3>
+</div>
+<h2> {{ exercice.question }} </h2>

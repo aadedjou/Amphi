@@ -7,7 +7,8 @@ import { Slide } from '../../models/amphi.models';
   styleUrls: ['./slide.component.css']
 })
 export class SlideComponent implements OnInit {
-  @Input() slide: Slide[];
+  @Input() slide : Slide;
+  @Input() class : string = "";
   @Output() slideController = new EventEmitter();
   @Output() contenu = new EventEmitter<Slide>();
 

@@ -12,8 +12,8 @@ import { SlideService } from './slide/slide.service';
 })
 
 export class InterfaceComponent implements OnInit {
-  prof_name : string = "Coumes";
   displayStats : boolean = false;
+  prof_name : string = "Bon";
   selection : Exercice = null;
   exercices : Exercice[];
   slides : Slide[];
@@ -35,7 +35,7 @@ export class InterfaceComponent implements OnInit {
     this.slides = this.slideService.getSlide();
     this.exercices = this.exoService.getExercices();
     this.selection = null; //this.exercices[Type.CODE];
-    this.chartService.resetChart(this.selection);
+    // this.chartService.resetChart(this.selection);
   }
 
   nextSlide() {
@@ -67,29 +67,6 @@ export class InterfaceComponent implements OnInit {
   }
   updateStep(event: any) {
     this.chartService.setStep(event.value);
-  }
-
-  entitled(type : Type) : string {
-    switch (type) {
-      case Type.CONTROLLED_INPUT:
-        return "Saisie contrôlée";
-      case Type.NUMERCIC_ANSWER:
-        return "Réponse numérique";
-      case Type.ORDERED_LIST:
-        return "Liste à ordonner";
-      case Type.FREE_ANSWER:
-        return "Réponse libre";
-      case Type.TRUE_FALSE:
-        return "Vrai / Faux";
-      case Type.LINKS:
-        return "Correspondances";
-      case Type.CODE:
-        return "CODE";
-      case Type.QCM:
-        return "QCM";
-      case Type.QCU:
-        return "QCU";
-    }
   }
 
   kindName(kind : number) : string {

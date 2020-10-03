@@ -1,3 +1,4 @@
+import { ExerciceButtonComponent } from './exercice-button/exercice-button.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { InterfaceComponent } from './interface.component';
@@ -30,6 +31,7 @@ import { NgModule } from '@angular/core';
     FormsModule,
   ],
   declarations: [
+    ExerciceButtonComponent,
     InterfaceComponent,
     ExerciceComponent,
     SlideComponent,

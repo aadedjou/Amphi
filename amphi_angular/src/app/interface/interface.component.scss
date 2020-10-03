@@ -1,3 +1,7 @@
+:root {
+  --bottom-space: 20px;
+}
+
 /* titles */
 h1 {
   font-size: 40pt;
@@ -17,11 +21,6 @@ h2 {
 
 h3 { margin: 0; }
 
-/*
-  life saviours:
-
-
-*/
 
 /* flex */
 .flex { display: flex; }
@@ -67,17 +66,22 @@ h3 { margin: 0; }
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
   height: 100%;
+  padding: var(--padding);
   // box-shadow: 10px 10px 0px rgba($color: #000000, $alpha: 0.25);
-  padding: 20px;
-  --header-height: 75px;
+  --padding: 20px;
+  --header-height: 30px;
 
   .header {
     height: var(--header-height);
+    margin: calc(-1 * var(--padding)) 0 0 calc(-1 * var(--padding));
+    width: calc(100% + var(--padding));
+    background-color: rgb(175, 150, 250, 0.75);
+    padding: 10px;
   }
   .exo-menu {
-    height: calc((100% - var(--header-height)) * 0.8);
+    width: 60%;
+    height: calc(100% - var(--header-height) - 25pt - var(--bottom-space) - 25pt);
   }
-
 }
 
 .line {
@@ -86,8 +90,12 @@ h3 { margin: 0; }
   align-items: center;
 }
 
+.contained {
+  min-width: 400px;
+}
+
 .bottom-space {
-  margin-bottom: 20px;
+  margin-bottom: var(--bottom-space);
 }
 
 .button-label {
@@ -152,7 +160,7 @@ div.center {
 mat-radio-button {
   margin: 10px;
 }
-button {
+button  {
   height: 40px;
   color: rgba(0, 0, 0, 0.4);
 }
