@@ -1,27 +1,34 @@
-import { Slide, Exercice, ChartKind, Type } from '../models/amphi.models';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Slide, Exercice, ChartKind } from '../models/amphi.models';
+import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { ExerciceService } from './exercice/exercice.service';
 import { ChartService } from './exercice/chart-ngx/chart-ngx.service';
 import { SlideService } from './slide/slide.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-interface',
   templateUrl: './interface.component.html',
-  styleUrls: ['./interface.component.scss'],
+  styleUrls: [
+    './interface.component.scss',
+    './interface.styles.scss'
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 
 export class InterfaceComponent implements OnInit {
   displayStats : boolean = false;
-  prof_name : string = "Bon";
+  gridLayout : boolean = true;
+  prof_name : string = "Prof";
   selection : Exercice = null;
   exercices : Exercice[];
   slides : Slide[];
   kinds : ChartKind[];
-  kind : ChartKind;
   index : number = 0;
+  kind : ChartKind;
 
   constructor(
+    public dialog: MatDialog,
     public readonly chartService: ChartService,
     private readonly slideService: SlideService,
     private readonly exoService: ExerciceService
@@ -78,5 +85,9 @@ export class InterfaceComponent implements OnInit {
       case ChartKind.PERCENTS:
         return "Pourcentages";
     }
+  }
+
+  openDialog() {
+    this.dialog.open(CloseDialogComponent);
   }
 }

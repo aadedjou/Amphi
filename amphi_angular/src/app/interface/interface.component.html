@@ -1,4 +1,4 @@
-<span class="grid-container">
+<span class="layout" [ngClass]="gridLayout ? 'grid' : 'material'">
   <div class="head">
     <h2> Amphi </h2>
   </div>
@@ -25,7 +25,12 @@
     <ng-container *ngIf="(index >= slides.length-1); else presentation">
       <div class="interface-panel blank">
         <div class="center">
-          <h2 class="center"> FIN DE LA PRESENTATION </h2>
+          <span class="center">
+            <h2 > FIN DE LA PRESENTATION </h2>
+            <button mat-stroked-button color="accent" (click)="openDialog()">
+              Fermer l'activité
+            </button>
+          </span>
         </div>
       </div>
     </ng-container>
@@ -38,7 +43,7 @@
   </div>
 
   <!-- CONTROLLER -->
-  <div class="zone3">
+  <div [ngClass]="gridLayout ? 'zone3' : 'zone4'">
     <div class="interface-panel">
       <ng-container *ngIf="selection == null; else backToSlides">
         <div class="line contained header">
@@ -47,13 +52,17 @@
             <button [disabled]="(index <= 0)" mat-mini-fab color="basic" (click)="prevSlide()">
               <i class="material-icons"> chevron_left </i>
             </button>
-            <span class="button-label" [ngClass]="(index <= 0) ? 'disabled' : ''"> Slide précédente </span>
+            <span class="button-label" [ngClass]="(index <= 0) ? 'disabled' : ''">
+              Slide précédente
+            </span>
           </div>
           <!-- space -->
           <div class="spacer"></div>
           <!-- bouton droite -->
           <div class="flex">
-            <span class="button-label" [ngClass]="(index >= slides.length -1) ? 'disabled' : ''"> Slide suivante </span>
+            <span class="button-label" [ngClass]="(index >= slides.length -1) ? 'disabled' : ''">
+              Slide suivante
+            </span>
             <button [disabled]="(index >= slides.length -1)" mat-mini-fab color="basic" (click)="nextSlide()">
               <i class="material-icons"> chevron_right </i>
             </button>
@@ -69,16 +78,31 @@
           <div class="spacer"></div>
         </div>
 
-        <!-- exos -->
         <div class="line">
           <div class="spacer"></div>
           <h3 class="flex disabled"> Vos exercices </h3>
         </div>
 
-        <div class="dark exo-menu">
-          <ng-container *ngFor="let exercice of exercices">
-            <app-exercice-button [exercice]="exercice" (click)="displayExercice(exercice)"></app-exercice-button>
-          </ng-container>
+        <div class="menu">
+          <div>
+            <i class="material-icons"> view_quilt </i>
+            <mat-slide-toggle color="accent" [(ngModel)]="gridLayout"></mat-slide-toggle>
+            <i class="material-icons"> view_module </i>
+          </div>
+          <div class="bottom">
+            <button class="icon" mat-mini-fab color="accent" (click)="openDialog()">
+              <i class="material-icons"> close </i>
+            </button>
+            <button class="icon" mat-mini-fab color="basic" style="margin-left: 10px;">
+              <i class="material-icons"> settings </i>
+            </button>
+          </div>
+
+          <div class="dark exo-menu">
+            <ng-container *ngFor="let exercice of exercices">
+              <app-exercice-button [exercice]="exercice" (click)="displayExercice(exercice)"></app-exercice-button>
+            </ng-container>
+          </div>
         </div>
       </ng-container>
 
@@ -118,7 +142,7 @@
   </div>
 
   <!-- CURRENT EXERCICE STATS -->
-  <div class="zone4">
+  <div [ngClass]="gridLayout ? 'zone4' : 'zone5'">
     <div class="interface-panel blank">
       <ng-container *ngIf="selection == null; then aucunExo else afficheStats"></ng-container>
       <ng-template #afficheStats>
