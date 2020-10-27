@@ -2,7 +2,14 @@ button {
   margin: 5px;
   color: white !important;
 }
-div { clear: left; }
+.lined {
+  clear: left;
+}
+
+.exo-container {
+  direction: ltr;
+  text-align: left;
+}
 
 /* colors */
 .mat-purple {

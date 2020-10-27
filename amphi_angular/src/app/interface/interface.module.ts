@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { SettingsMenuComponent } from './settings-menu/settings-menu.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { NgModule } from '@angular/core';
     SlideComponent,
     ChartComponent,
     CloseDialogComponent,
+    SettingsMenuComponent,
   ],
   providers: [
   ],

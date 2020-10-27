@@ -1,0 +1,22 @@
+<div class="black rounded" style="position: absolute; bottom: 100px;">
+  <div class="line" style="margin: 10px 0px;">
+    <div class="spacer"></div>
+    <i class="flex material-icons" style="vertical-align: middle;"> view_module </i>
+    <mat-slide-toggle
+      class="flex"
+      style="vertical-align: middle; padding: 0px 5px;"
+      color="accent"
+      [(ngModel)]="model"
+      (click)="emit()">
+    </mat-slide-toggle>
+    <i class="flex material-icons" style="vertical-align: middle;"> view_quilt </i>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="line" style="height: 0px;">
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="flex black bubble-pointer"></div>
+    <div class="spacer"></div>
+  </div>
+</div>

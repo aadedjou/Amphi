@@ -1,4 +1,4 @@
-<span class="layout" [ngClass]="gridLayout ? 'grid' : 'material'">
+<span class="layout" [ngClass]="materialLayout ? 'material' : 'grid'">
   <div class="head">
     <h2> Amphi </h2>
   </div>
@@ -12,11 +12,13 @@
     </ng-template>
 
     <ng-template #currentExo>
-      <ng-container *ngIf="displayStats; then afficheStats else afficheExo"></ng-container>
+      <div class="interface-panel center">
+        <ng-container *ngIf="displayStats; then afficheStats else afficheExo"></ng-container>
+      </div>
     </ng-template>
 
     <ng-template #afficheExo>
-      <app-exercice [exercice]="selection" ></app-exercice>
+        <app-exercice [exercice]="selection" ></app-exercice>
     </ng-template>
   </div>
 
@@ -43,35 +45,38 @@
   </div>
 
   <!-- CONTROLLER -->
-  <div [ngClass]="gridLayout ? 'zone3' : 'zone4'">
-    <div class="interface-panel">
-      <ng-container *ngIf="selection == null; else backToSlides">
-        <div class="line contained header">
-          <!-- bouton gauche -->
-          <div class="flex" style="position: relative;">
-            <button [disabled]="(index <= 0)" mat-mini-fab color="basic" (click)="prevSlide()">
-              <i class="material-icons"> chevron_left </i>
-            </button>
-            <span class="button-label" [ngClass]="(index <= 0) ? 'disabled' : ''">
-              Slide précédente
-            </span>
-          </div>
-          <!-- space -->
-          <div class="spacer"></div>
-          <!-- bouton droite -->
-          <div class="flex">
-            <span class="button-label" [ngClass]="(index >= slides.length -1) ? 'disabled' : ''">
-              Slide suivante
-            </span>
-            <button [disabled]="(index >= slides.length -1)" mat-mini-fab color="basic" (click)="nextSlide()">
-              <i class="material-icons"> chevron_right </i>
-            </button>
-          </div>
-        </div>
+  <div class="zone5">
+    <div class="line header" [ngClass]="materialLayout ? '' : 'connected-up'">
+      <!-- bouton gauche -->
+      <div class="flex">
+        <button [disabled]="(index <= 0)" mat-mini-fab color="basic" (click)="prevSlide()">
+          <i class="material-icons"> chevron_left </i>
+        </button>
+        <span class="button-label" [ngClass]="(index <= 0) ? 'disabled' : ''">
+          Slide précédente
+        </span>
+      </div>
+      <!-- space -->
+      <div class="spacer"></div>
+      <!-- bouton droite -->
+      <div class="flex">
+        <span class="button-label" [ngClass]="(index >= slides.length -1) ? 'disabled' : ''">
+          Slide suivante
+        </span>
+        <button [disabled]="(index >= slides.length -1)" mat-mini-fab color="basic" (click)="nextSlide()">
+          <i class="material-icons"> chevron_right </i>
+        </button>
+      </div>
+    </div>
+  </div>
 
-        <div class="line contained bottom-space">
+  <!-- EXOS -->
+  <div [ngClass]="materialLayout ? 'zone4' : 'zone3'">
+    <div class="interface-panel" [ngClass]="materialLayout ? '' : 'connected-down'">
+      <ng-container *ngIf="selection == null; else backToSlides">
+        <div class="line bottom-space">
           <div class="spacer"></div>
-          <h2 class="flex disabled"> Bienvenue, M. </h2>
+          <h2 class="flex disabled"> Bienvenue, </h2>
           <div style="width: 5px;"></div>
           <h2 class="flex small-caps"> {{ prof_name }}</h2>
           <h2 class="flex disabled"> . </h2>
@@ -84,23 +89,26 @@
         </div>
 
         <div class="menu">
-          <div>
-            <i class="material-icons"> view_quilt </i>
-            <mat-slide-toggle color="accent" [(ngModel)]="gridLayout"></mat-slide-toggle>
-            <i class="material-icons"> view_module </i>
-          </div>
+          <ng-container *ngIf="settingsMenu">
+            <app-settings-menu
+              [opened]="settingsMenu"
+              (closed)="onClose($event)"
+              (toggled)="onToggle($event)">
+            </app-settings-menu>
+          </ng-container>
+
           <div class="bottom">
             <button class="icon" mat-mini-fab color="accent" (click)="openDialog()">
               <i class="material-icons"> close </i>
             </button>
-            <button class="icon" mat-mini-fab color="basic" style="margin-left: 10px;">
+            <button class="icon" mat-mini-fab color="basic" style="margin-left: 10px;" (click)="toggleSettingsMenu()">
               <i class="material-icons"> settings </i>
             </button>
           </div>
 
           <div class="dark exo-menu">
             <ng-container *ngFor="let exercice of exercices">
-              <app-exercice-button [exercice]="exercice" (click)="displayExercice(exercice)"></app-exercice-button>
+              <app-exercice-button [lined]="!materialLayout" [exercice]="exercice" (click)="displayExercice(exercice)"></app-exercice-button>
             </ng-container>
           </div>
         </div>
@@ -142,15 +150,15 @@
   </div>
 
   <!-- CURRENT EXERCICE STATS -->
-  <div [ngClass]="gridLayout ? 'zone4' : 'zone5'">
+  <div [ngClass]="materialLayout ? 'zone3' : 'zone4'">
     <div class="interface-panel blank">
       <ng-container *ngIf="selection == null; then aucunExo else afficheStats"></ng-container>
       <ng-template #afficheStats>
         <app-chart-ngx [exercice]= "selection"></app-chart-ngx>
-        <button class="float-left" mat-icon-button color="accent" (click)="refreshStats()">
-          <i class="material-icons"> refresh </i>
-        </button>
       </ng-template>
+      <button class="float-left" *ngIf="selection != null;" mat-icon-button color="accent" (click)="refreshStats()">
+        <i class="material-icons"> refresh </i>
+      </button>
     </div>
 
     <ng-template #aucunExo>

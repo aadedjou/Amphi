@@ -1,10 +1,16 @@
+/> prevent refreshing when displaying stats
+/> material exo stats displaying
 > different colors for types
-> prevent refreshing when displaying stats
-> settings
-> material theme ????
 > replace buttons by tabs
-> reorganize layouts (zones)
+> material theme ????
+> toggle -> right value (click)=> force value
+> material exo list -> bricks
 
+
+
+[x] remove refresh button from displayed stats
+[x] settings
+[x] reorganize layouts (zones)
 [x] fresh layout
 [x] close button
 [x] last slide -> ask to close activity

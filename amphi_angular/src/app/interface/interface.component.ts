@@ -17,9 +17,10 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 export class InterfaceComponent implements OnInit {
+  materialLayout : boolean = true;
+  settingsMenu : boolean = false;
   displayStats : boolean = false;
-  gridLayout : boolean = true;
-  prof_name : string = "Prof";
+  prof_name : string = "Prénom NOM";
   selection : Exercice = null;
   exercices : Exercice[];
   slides : Slide[];
@@ -89,5 +90,16 @@ export class InterfaceComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(CloseDialogComponent);
+  }
+
+  toggleSettingsMenu() {
+    this.settingsMenu = !this.settingsMenu;
+  }
+
+  onToggle(pop : boolean) {
+    this.materialLayout = pop;
+  }
+  onClose(open : boolean) {
+    this.settingsMenu = open;
   }
 }

@@ -8,7 +8,8 @@ import { Exercice } from '../../models/amphi.models';
 })
 
 export class ExerciceButtonComponent implements OnInit {
-  @Input() exercice: Exercice;
+  @Input() lined : boolean;
+  @Input() exercice : Exercice;
   displayPlayButton : boolean = false;
 
   constructor() { }
