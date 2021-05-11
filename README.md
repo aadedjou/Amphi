@@ -1,8 +1,24 @@
   #    Amphi
-## *Outil interactif pour l'amphi en présentiel ou distanciel*  
+## *Outil interactif de conférences en présentiel / distanciel*  
 
-Sur le site de *PlatOn*, chaque application correspondra à un cours, que le professeur pourra choisir de rendre visible ou non par les élèves.  
-Au début de chaque cours, le professeur demande aux élèves d'ouvrir l'application correspondant au cours.  
+L'application Amphi de a plateforme PLaTon sera un outil de conférence et de diffusion de cours en direct par les professeurs, à des élèves.  
+La particularité de ces amphis est que le professeur pourra spontanément lancer des exercices PLaTon durant la diffusion qui seront imposés à tous les participants.
+
+### CRÉATION
+
+Pour créer un Amphi, le professeur précisera en paramètres:
+* Le **cours** à diffuser, provenant de sa bibliothèque personnelle
+* Une **liste d'exercices,** provenants de sa bibliothèque personnelle *(peut être vide)*
+* L'**horaire de début** prévue de l'Amphi 
+- L'**horaire de fin** prévue pour l'Amphi
+* Une **liste d'intervenants** pouvant assister le professeur durant la conférence *(peut être vide)*
+- Le **nombre max. de participants** à l'Amphi
+- Les **utilisateurs autorisées** à suivre l'Amphi *(un groupe suivant un certain module par exemple)*
+- Les **utilisateurs prohibés** *(un groupe suivant un certain module par exemple)*
+
+
+
+// TODO : mettre à jour l'utilisation + le déroulement de l'Amphi
   
 En se connectant sur l'application, les élèves voient par défaut le slide courant du cours du professeur. (ils pourront naviguer librement parmi les slides par la suite).  
 
