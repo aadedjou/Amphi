@@ -9,14 +9,14 @@
 1. Le prof. crée une conférence + la paramètre 
 
 #### PARAMETRES POSSIBLES:
-    + cours
-    + liste d'exos *(peut être vide)*
-    + horaire de début 
-    - horaire de fin
-    + liste d'intervenants *(peut être vide)*
-    - nb max de participants
++ cours
++ liste d'exos *(peut être vide)*
++ horaire de début 
+- horaire de fin
++ liste d'intervenants *(peut être vide)*
+- nb max de participants
 
-+ -> *obligatoire
+\+ -> *obligatoire
 
 2. Les élèves se connectent (asynchrone) dans le 'salon' hébergeant l'amphi.  
 Tant que le prof. n'est pas connecté, leur rendu est une page d'accueil affichant les paramètres de l'amphi (titre, nom du prof. etc.)  
