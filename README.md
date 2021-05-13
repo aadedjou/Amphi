@@ -2,7 +2,7 @@
 
 ### ***Outil interactif de conférences en présentiel / distanciel***
 
-*L'application **Amphi** de a plateforme PLaTon sera un outil de **conférence** et de **diffusion de cours en direct** par les professeurs, à des élèves.*
+*L'application **Amphi** de la plateforme PLaTon sera un outil de **conférence** et de **diffusion de cours en direct** par les professeurs, à des élèves.*
 *La particularité de ces amphis réside dans la possibilité pour le professeur de spontanément **diffuser des exercices PLaTon** durant la conférence, qui seront affectés à tous les participants.*  
 
 ---
@@ -12,7 +12,7 @@
 Pour créer un Amphi, le professeur précisera en paramètres:
 * Le **cours** à diffuser, provenant de sa bibliothèque personnelle
 * Un **titre** *(par défaut celui du cours sélectionné)*
-* Une **liste d'exercices,** provenants de sa bibliothèque personnelle *(peut être vide)*
+* Une **liste d'exercices,** provenant de sa bibliothèque personnelle *(peut être vide)*
 * L'**horaire de début** prévue de l'Amphi
 * Les **utilisateurs autorisées** à suivre l'Amphi *(un groupe suivant un certain module par exemple)*
 
@@ -31,7 +31,7 @@ Ils peuvent tous s'y connecter, mais l'amphi ne démarrera réellement qu'après
 ## LANCEMENT
 
 Lorsque le professeur débute la conférence, il a accès à un **tableau de contrôle** lui permettant de naviguer parmi ses slides, avec vue sur la slide courante et celle qui la suit.  
-▶ Il a aussi accès aux **exercices** qu'il a préalablement sélectionnés et qu'il pourra lancer à sa guise durant la conférence. (l'ordre et les occurences n'importent pas)
+▶ Il a aussi accès aux **exercices** qu'il a préalablement sélectionnés et qu'il pourra lancer à sa guise durant la conférence. (l'ordre et les occurrences n'importent pas)
 
 Les participants ont seulement une vue sur la slide courante.
 
@@ -60,7 +60,7 @@ Ce sera sur cette slide que reprendra le **📖 mode cours**.
 
 ### *PARTICIPANTS*
 Les participants peuvent alterner entre 2 modes:
-- 🔒 Un mode **flux** qui ne leur permet que de voir la slide courante diffusée par le professeur
+- 👁 Un mode **flux** qui ne leur permet que de voir la slide courante diffusée par le professeur
 
 - 🔓 Un mode **navigation libre** leur permettant de naviguer parmi toutes les slides déjà diffusées par le professeur  
 Le professeur peut toutefois 🔐 **imposer le mode flux** pour tous les participants (et le verrouiller) quand il en ressent le besoin.
