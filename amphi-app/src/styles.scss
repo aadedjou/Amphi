@@ -34,6 +34,15 @@ $amphi-app-theme: mat-dark-theme((
 @include angular-material-theme($amphi-app-theme);
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+%title-font {
+  font-family: "Raleway";
+}
+
+%bolder {
+  font-family: "MontSerrat";
+}
 
 html, body {
   margin: 0;
@@ -42,7 +51,7 @@ html, body {
 }
 
 h1, h2, h3, h4 {
-  font-family: "Raleway";
+  @extend %title-font;
 }
 
 body {
@@ -90,6 +99,10 @@ div {
   display: none;
 }
 
+.white {
+  color: white;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -97,6 +110,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // MATERIAL FIX
 
 $primary-color: #b388ff;
+$white-accent: rgb(225, 225, 250);
 
 .mat-button-wrapper {
   padding: 0 !important;

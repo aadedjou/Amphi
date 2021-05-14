@@ -1,7 +1,26 @@
 <div class="grid-container">
-  <div class="top-info"></div>
+  <div class="top-info">
+    <div class="center">
+      <span class="center participants"> <mat-icon>people</mat-icon> 47 </span>
+      <div class="spacer"></div>
+      <span class="seconds"> {{ current_seconds }} </span>
+      <span> {{ current_time }} </span>
+    </div>
+  </div>
+
+  <div class="amphi-title">
+    <div class="spacer"></div>
+    <h2>AMPHI <sup class="copyright">©</sup></h2>
+    <h1>TITRE DU COURS</h1>
+  </div>
+
   <div class="current-slide-container">
-    <div class="slide"></div>
+    <div class="logo-box">
+      <img class="logo" src="../../assets/platon_logo_black.png">
+    </div>
+    <div class="spacer"></div>
+
+    <img class="slide" src="../../assets/blank-slide.png">
     <div class="navigation-bar">
       <button mat-fab color="primary">
         <mat-icon>arrow_back</mat-icon>
@@ -17,19 +36,21 @@
         <mat-icon>remove_red_eye</mat-icon>
       </button>
     </div>
-  </div>
 
-  <div class="control-panel-container">
-    <div class="control-panel"></div>
+    <div class="spacer"></div>
   </div>
 
   <div class="next-slide-container">
-      <div class="slide"></div>
-      <h2>NEXT</h2>
+    <img class="slide" src="../../assets/blank-slide.png">
+    <h2>NEXT</h2>
   </div>
-  <div class="amphi-title">
-    <div class="spacer"></div>
-    <h2>AMPHI <sup class="copyright">©</sup></h2>
-    <h1>TITRE DU COURS</h1>
+
+  <div class="control-panel-container">
+    <div class="control-panel">
+      <div class="menu"></div>
+      <div class="panel">
+        <h1>Bonjour, M. <span class="white">{{ prof_name }}</span>.</h1>
+      </div>
+    </div>
   </div>
 </div>
