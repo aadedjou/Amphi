@@ -16,11 +16,11 @@ $amphi-app-primary: mat-palette($mat-deep-purple, A100);
 $amphi-app-accent: mat-palette($mat-lime, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$amphi-app-warn: mat-palette($mat-pink);
+$amphi-app-warn: mat-palette($mat-pink, A400);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$amphi-app-theme: mat-dark-theme((
+$amphi-app-theme: mat-light-theme((
   color: (
     primary: $amphi-app-primary,
     accent: $amphi-app-accent,
@@ -35,16 +35,22 @@ $amphi-app-theme: mat-dark-theme((
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 %title-font {
-  font-family: "Raleway";
+  font-family: "Raleway", sans-serif;
 }
 
 %bolder {
-  font-family: "MontSerrat";
+  font-family: "MontSerrat", sans-serif;
+}
+
+%light {
+  font-family: "Poppins", sans-serif;
 }
 
 html, body {
+  @extend %light;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -61,6 +67,14 @@ body {
 
 div {
   box-sizing: border-box;
+}
+
+button {
+  transition: .4s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .border {
@@ -102,10 +116,6 @@ div {
 .white {
   color: white;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 
 // MATERIAL FIX
 

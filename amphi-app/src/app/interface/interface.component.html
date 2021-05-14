@@ -1,10 +1,22 @@
-<div class="grid-container">
+<div class="grid-container" (keypress)="onKeypressEvent($event)">
+  <div class="top-bar">
+    <a href="https://pl.u-pem.fr/activity/play/0/" target="_blank" rel="noopener noreferrer">
+      <div class="logo-box">
+        <img class="logo" src="../../assets/platon_logo_black.png">
+      </div>
+    </a>
+  </div>
+
   <div class="top-info">
     <div class="center">
       <span class="center participants"> <mat-icon>people</mat-icon> 47 </span>
       <div class="spacer"></div>
       <span class="seconds"> {{ current_seconds }} </span>
       <span> {{ current_time }} </span>
+
+      <button class="exit" mat-icon-button color="warn" (click)="openDialog()">
+        <mat-icon>power_settings_new</mat-icon>
+      </button>
     </div>
   </div>
 
@@ -15,9 +27,6 @@
   </div>
 
   <div class="current-slide-container">
-    <div class="logo-box">
-      <img class="logo" src="../../assets/platon_logo_black.png">
-    </div>
     <div class="spacer"></div>
 
     <img class="slide" src="../../assets/blank-slide.png">
@@ -36,7 +45,7 @@
         <mat-icon>remove_red_eye</mat-icon>
       </button>
     </div>
-
+    <div class="spacer"></div>
     <div class="spacer"></div>
   </div>
 
@@ -47,7 +56,12 @@
 
   <div class="control-panel-container">
     <div class="control-panel">
-      <div class="menu"></div>
+      <div class="menu">
+        <div class="spacer"></div>
+        <mat-icon>
+          keyboard_arrow_down
+        </mat-icon>
+      </div>
       <div class="panel">
         <h1>Bonjour, M. <span class="white">{{ prof_name }}</span>.</h1>
       </div>

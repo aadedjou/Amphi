@@ -1,19 +1,5 @@
 @import "../../styles";
 
-.grid-container {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  grid-template-rows: 0.8fr 1.8fr 0.8fr 0.8fr 0.8fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "current top-info"
-    "current next-slide"
-    "current control-panel"
-    "current control-panel"
-    "amphi-title control-panel";
-}
-
 .dark-bg {
   background-color: rgba(15, 15, 15, .3);
 }
@@ -23,10 +9,44 @@
   background-color: white;
 }
 
-.top-info {
-  @extend %bolder, .dark-bg;
-  grid-area: top-info;
+.grid-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  grid-template-rows: 0.4fr 2.2fr 1.6fr 0.8fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "top-bar top-info"
+    "current next-slide"
+    "current control-panel"
+    "amphi-title control-panel";
+}
 
+
+
+.top-bar {
+  grid-area: top-bar;
+  padding: 2.5%;
+
+  .logo-box {
+    @extend .center;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    .logo {
+      height: 100%;
+    }
+  }
+}
+
+.top-info {
+  @extend %bolder,
+  .dark-bg;
+  grid-area: top-info;
   padding: 10px;
 
   div {
@@ -42,8 +62,19 @@
       color: rgba($color: $white-accent, $alpha: .4);
     }
 
-    mat-icon, span {
+    mat-icon,
+    span {
       margin: 0 5px;
+    }
+
+    .exit {
+      margin-left: 10px;
+      background-color: white;
+      transform: scale(0.8);
+
+      &:hover {
+        transform: scale(0.95);
+      }
     }
   }
 }
@@ -72,24 +103,13 @@
   }
 }
 
+
+
 .current-slide-container {
   @extend .vertical-center;
   grid-area: current;
   padding: 2.5%;
 
-  .logo-box {
-    @extend .center;
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-    background-color: white;
-    border-radius: 5px;
-    margin-bottom: 10px;
-
-    .logo {
-      height: 100%;
-    }
-  }
 
   .navigation-bar {
     @extend .center;
@@ -107,21 +127,17 @@
       height: $button-size;
       width: $button-size;
       box-shadow: none;
-      transition: .4s;
 
       mat-icon {
         color: white;
-      }
-
-      &:hover {
-        transform: scale(1.1);
       }
     }
   }
 }
 
 .next-slide-container {
-  @extend .vertical-center, .dark-bg;
+  @extend .vertical-center,
+  .dark-bg;
   grid-area: next-slide;
   padding: 5%;
 
@@ -144,9 +160,15 @@
     height: 100%;
 
     .menu {
+      @extend .flex;
       height: 25px;
       background-color: $primary-color;
       border-radius: 15px 15px 0 0;
+
+      mat-icon {
+        cursor: pointer;
+        margin: 0 10px;
+      }
     }
 
     .panel {
