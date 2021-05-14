@@ -1,0 +1,17 @@
+@import "../interface.component.scss";
+
+h1 {
+  margin: 0;
+}
+
+.mat-dialog-actions {
+  justify-content: right;
+}
+
+button {
+  text-transform: uppercase;
+
+  .comment {
+    font-size: 8pt;
+  }
+}
