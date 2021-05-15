@@ -9,10 +9,12 @@
 
   <div class="top-info">
     <div class="center">
-      <span class="center participants"> <mat-icon>people</mat-icon> 47 </span>
+      <span class="center participants">
+        <mat-icon>people</mat-icon> 47
+      </span>
       <div class="spacer"></div>
-      <span class="seconds"> {{ current_seconds }} </span>
-      <span> {{ current_time }} </span>
+      <span class="seconds"> {{ currentSeconds }} </span>
+      <span> {{ currentTime }} </span>
 
       <button class="exit" mat-icon-button color="warn" (click)="openDialog()">
         <mat-icon>power_settings_new</mat-icon>
@@ -55,15 +57,61 @@
   </div>
 
   <div class="control-panel-container">
-    <div class="control-panel">
-      <div class="menu">
+    <div id="control-panel" [ngClass]="controlPanelHidden ? 'hide-panel' : ''">
+      <div class="title-bar">
         <div class="spacer"></div>
-        <mat-icon>
-          keyboard_arrow_down
-        </mat-icon>
+        <ng-container *ngIf="controlPanelHidden; then showIcon else hideIcon"></ng-container>
+        <ng-template #hideIcon>
+          <mat-icon (click)="toggleControlPanel()">
+            keyboard_arrow_down
+          </mat-icon>
+        </ng-template>
+        <ng-template #showIcon>
+          <mat-icon (click)="toggleControlPanel()">
+            keyboard_arrow_up
+          </mat-icon>
+        </ng-template>
       </div>
+
       <div class="panel">
-        <h1>Bonjour, M. <span class="white">{{ prof_name }}</span>.</h1>
+        <mat-tab-group [selectedIndex]="2">
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>chat</mat-icon>
+            </ng-template>
+            <h1 class="white"> Conversation </h1>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>play_circle_outline</mat-icon>
+            </ng-template>
+            <h1>Vos<span class="white"> exercices </span></h1>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>home</mat-icon>
+            </ng-template>
+            <h1>Bonjour, M. <span class="white">{{ profName }}</span>.</h1>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>info</mat-icon>
+            </ng-template>
+            <h1 class="white"> A propos </h1>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>settings</mat-icon>
+            </ng-template>
+            <h1 class="white"> Paramètres </h1>
+          </mat-tab>
+
+        </mat-tab-group>
       </div>
     </div>
   </div>

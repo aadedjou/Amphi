@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { interval } from 'rxjs';
 import { ExitDialogComponent } from './exit-dialog/exit-dialog.component';
@@ -9,16 +9,17 @@ import { ExitDialogComponent } from './exit-dialog/exit-dialog.component';
   styleUrls: ['./interface.component.scss']
 })
 export class InterfaceComponent implements OnInit {
-  current_seconds = new Date().toLocaleTimeString().split(":").pop();
-  current_time : String = new Date().toLocaleTimeString().slice(0, -3);
-  prof_name : String = "Champalle";
+  controlPanelHidden : boolean = false;
+  currentSeconds = new Date().toLocaleTimeString().split(":").pop();
+  currentTime : String = new Date().toLocaleTimeString().slice(0, -3);
+  profName : String = "Champalle";
 
-  update_time = interval(1000).subscribe(
-    () => { this.current_time = new Date().toLocaleTimeString().slice(0, -3); }
+  updateTime = interval(1000).subscribe(
+    () => { this.currentTime = new Date().toLocaleTimeString().slice(0, -3); }
   );
 
-  update_seconds = interval(1000).subscribe(
-    () => { this.current_seconds = new Date().toLocaleTimeString().split(":").pop(); }
+  updateSeconds = interval(1000).subscribe(
+    () => { this.currentSeconds = new Date().toLocaleTimeString().split(":").pop(); }
   );
 
   constructor(public dialog: MatDialog) {}
@@ -32,5 +33,10 @@ export class InterfaceComponent implements OnInit {
 
   onKeypressEvent(event: any){
     console.log(event.target.value);
+  }
+
+  toggleControlPanel() {
+    this.controlPanelHidden = !this.controlPanelHidden;
+    console.log(this.controlPanelHidden);
   }
 }

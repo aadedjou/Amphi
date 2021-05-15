@@ -33,6 +33,7 @@ $amphi-app-theme: mat-light-theme((
 // that you are using.
 @include angular-material-theme($amphi-app-theme);
 
+// FONTS & COLORS
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
@@ -49,6 +50,10 @@ $amphi-app-theme: mat-light-theme((
   font-family: "Poppins", sans-serif;
 }
 
+$primary-color: #b388ff;
+$fake-white: rgb(225, 225, 250);
+
+// GLOBAL RULES
 html, body {
   @extend %light;
   margin: 0;
@@ -77,6 +82,7 @@ button {
   }
 }
 
+// UTILS
 .border {
   border: solid white 2px;
 }
@@ -114,14 +120,29 @@ button {
 }
 
 .white {
-  color: white;
+  color: white !important;
 }
 
-// MATERIAL FIX
-
-$primary-color: #b388ff;
-$white-accent: rgb(225, 225, 250);
+// MATERIAL FIX >:(
 
 .mat-button-wrapper {
   padding: 0 !important;
+}
+
+.mat-tab-label {
+  padding: 0 10px !important;
+  min-width: 0 !important;
+}
+
+.mat-tab-body-wrapper {
+  width: 100% !important;
+  transition: .3s !important;
+}
+
+.mat-tab-nav-bar, .mat-tab-header {
+  border-bottom: 1px solid rgba($color: $fake-white, $alpha: .3);
+}
+
+.mat-tab-label:focus mat-icon {
+  @extend .white;
 }
