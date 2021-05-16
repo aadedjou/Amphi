@@ -5,7 +5,7 @@
 *L'application **Amphi** de la plateforme PLaTon sera un outil de **conférence** et de **diffusion de cours en direct** par les professeurs, à des élèves.*
 *La particularité de ces amphis réside dans la possibilité pour le professeur de spontanément **diffuser des exercices PLaTon** durant la conférence, qui seront affectés à tous les participants.*  
 
----
+![](./amphi-app/src/assets/amphi_screen.png)
 
 ## CRÉATION
 
