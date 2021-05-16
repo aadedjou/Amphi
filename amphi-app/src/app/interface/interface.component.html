@@ -1,9 +1,7 @@
 <div class="grid-container" (keypress)="onKeypressEvent($event)">
   <div class="top-bar">
-    <a href="https://pl.u-pem.fr/activity/play/0/" target="_blank" rel="noopener noreferrer">
-      <div class="logo-box">
-        <img class="logo" src="../../assets/platon_logo_black.png">
-      </div>
+    <a class="logo-box" href="https://pl.u-pem.fr/activity/play/0/" target="_blank" rel="noopener noreferrer">
+      <img class="logo" src="../../assets/platon_logo_black.png">
     </a>
   </div>
 
@@ -14,7 +12,7 @@
       </span>
       <div class="spacer"></div>
       <span class="seconds"> {{ currentSeconds }} </span>
-      <span> {{ currentTime }} </span>
+      <span class="time"> {{ currentTime }} </span>
 
       <button class="exit" mat-icon-button color="warn" (click)="openDialog()">
         <mat-icon>power_settings_new</mat-icon>
@@ -24,7 +22,7 @@
 
   <div class="amphi-title">
     <div class="spacer"></div>
-    <h2>AMPHI <sup class="copyright">©</sup></h2>
+    <h2>AMPHI <sup class="copyright">©</sup> <span class="version"> v1.0</span> </h2>
     <h1>TITRE DU COURS</h1>
   </div>
 
@@ -58,23 +56,15 @@
 
   <div class="control-panel-container">
     <div id="control-panel" [ngClass]="controlPanelHidden ? 'hide-panel' : ''">
-      <div class="title-bar">
+      <div class="title-bar" (click)="toggleControlPanel()">
         <div class="spacer"></div>
-        <ng-container *ngIf="controlPanelHidden; then showIcon else hideIcon"></ng-container>
-        <ng-template #hideIcon>
-          <mat-icon (click)="toggleControlPanel()">
-            keyboard_arrow_down
-          </mat-icon>
-        </ng-template>
-        <ng-template #showIcon>
-          <mat-icon (click)="toggleControlPanel()">
-            keyboard_arrow_up
-          </mat-icon>
-        </ng-template>
+        <mat-icon class="hide-arrow" [ngClass]="controlPanelHidden ? 'flip-arrow' : ''">
+          keyboard_arrow_down
+        </mat-icon>
       </div>
 
       <div class="panel">
-        <mat-tab-group [selectedIndex]="2">
+        <mat-tab-group [selectedIndex]="3">
 
           <mat-tab>
             <ng-template mat-tab-label>
@@ -85,23 +75,26 @@
 
           <mat-tab>
             <ng-template mat-tab-label>
-              <mat-icon>play_circle_outline</mat-icon>
+              <mat-icon>people</mat-icon>
             </ng-template>
-            <h1>Vos<span class="white"> exercices </span></h1>
+            <h1 class="white"> Participants </h1>
           </mat-tab>
 
           <mat-tab>
             <ng-template mat-tab-label>
-              <mat-icon>home</mat-icon>
+              <mat-icon class="home">home</mat-icon>
             </ng-template>
             <h1>Bonjour, M. <span class="white">{{ profName }}</span>.</h1>
           </mat-tab>
 
           <mat-tab>
             <ng-template mat-tab-label>
-              <mat-icon>info</mat-icon>
+              <mat-icon>play_circle_outline</mat-icon>
             </ng-template>
-            <h1 class="white"> A propos </h1>
+            <h1>Vos<span class="white"> exercices </span></h1>
+            <div *ngFor="let exo of exercices">
+              <platon-exercice [exercice]=exo></platon-exercice>
+            </div>
           </mat-tab>
 
           <mat-tab>

@@ -1,0 +1,47 @@
+@import "../../../styles";
+
+.exercice-line {
+  @extend .center,
+  %light;
+  margin: 15px 0;
+
+  .exo-type {
+    transform: scale(0.8);
+    transition: .4s;
+  }
+
+  .dot {
+    margin: 0 5px 0 2.5px;
+  }
+
+  .exercice-title {
+    @extend .center;
+
+    cursor: pointer;
+    font-size: 12pt;
+    padding: 0 10px;
+    border-radius: 20px;
+    background-color: rgba($color: $fake-white, $alpha: .2);
+    transition: .4s;
+  }
+
+  .play-button {
+    cursor: pointer;
+    opacity: 0;
+    transition: .2s;
+  }
+
+  &:hover {
+    .exo-type {
+      color: $accent-color;
+    }
+
+    .exercice-title {
+      background-color: rgba($color: $primary-color, $alpha: .6);
+    }
+
+    .play-button {
+      opacity: 1;
+    }
+  }
+}

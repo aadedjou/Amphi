@@ -26,13 +26,15 @@
 
 
 .top-bar {
+  $logo-size: 40px;
   grid-area: top-bar;
   padding: 2.5%;
+  min-height: calc($logo-size + 2.5%);
 
   .logo-box {
     @extend .center;
-    width: 40px;
-    height: 40px;
+    width: $logo-size;
+    height: $logo-size;
     padding: 5px;
     background-color: white;
     border-radius: 5px;
@@ -57,6 +59,10 @@
     .participants {
       font-size: 14pt;
       color: $primary-color;
+    }
+
+    .time {
+      @extend %sans;
     }
 
     .seconds {
@@ -85,22 +91,25 @@
   grid-area: amphi-title;
   padding: 2.5%;
 
-  h1,
-  h2 {
-    margin: 0;
-  }
-
   h2 {
     color: $primary-color;
+    margin: 0;
   }
 
   h1 {
     font-size: 36pt;
     text-shadow: -5px 5px rgba($color: black, $alpha: .3);
+    margin: 0;
   }
 
   .copyright {
     font-size: 75%;
+  }
+
+  .version {
+    @extend %sans;
+    font-size: 16pt;
+    opacity: .7;
   }
 }
 
@@ -111,6 +120,9 @@
   grid-area: current;
   padding: 2.5%;
 
+  .slide {
+    max-height: 400px;
+  }
 
   .navigation-bar {
     @extend .center;
@@ -162,7 +174,7 @@
   #control-panel {
     @extend .flex-column;
     height: 100%;
-    transition: .3s;
+    transition: .4s;
 
     .title-bar {
       @extend .flex;
@@ -170,9 +182,14 @@
       background-color: $primary-color;
       border-radius: 15px 15px 0 0;
 
-      mat-icon {
+      .hide-arrow {
         cursor: pointer;
         margin: 0 10px;
+        transition: .2s;
+      }
+
+      .flip-arrow {
+        transform: rotate(180deg);
       }
     }
 
@@ -185,11 +202,17 @@
 
       mat-icon {
         color: $fake-white;
+
+        &.home {
+          margin: 0 7.5px;
+          transform: scale(1.4);
+        }
       }
     }
 
     .panel {
       height: inherit;
+      padding: 0 15px;
       background-color: rgba($color: $primary-color, $alpha: .2);
       transition: .6s;
 

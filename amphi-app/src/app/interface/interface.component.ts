@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { interval } from 'rxjs';
 import { ExitDialogComponent } from './exit-dialog/exit-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Exercice } from '../models/exercices';
+import { interval } from 'rxjs';
+import { ExerciceService } from '../exercice.service';
 
 @Component({
   selector: 'app-interface',
@@ -12,6 +14,7 @@ export class InterfaceComponent implements OnInit {
   controlPanelHidden : boolean = false;
   currentSeconds = new Date().toLocaleTimeString().split(":").pop();
   currentTime : String = new Date().toLocaleTimeString().slice(0, -3);
+  exercices : Exercice[] | undefined = new ExerciceService().getExercices();
   profName : String = "Champalle";
 
   updateTime = interval(1000).subscribe(
@@ -22,7 +25,8 @@ export class InterfaceComponent implements OnInit {
     () => { this.currentSeconds = new Date().toLocaleTimeString().split(":").pop(); }
   );
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
   }

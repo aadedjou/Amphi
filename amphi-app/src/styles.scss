@@ -35,15 +35,21 @@ $amphi-app-theme: mat-light-theme((
 
 // FONTS & COLORS
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 %title-font {
   font-family: "Raleway", sans-serif;
 }
 
+%sans {
+  font-family: "MontSerrat", sans-serif;
+  font-weight: 600;
+}
+
 %bolder {
   font-family: "MontSerrat", sans-serif;
+  font-weight: 800;
 }
 
 %light {
@@ -51,6 +57,7 @@ $amphi-app-theme: mat-light-theme((
 }
 
 $primary-color: #b388ff;
+$accent-color: #c6ff00;
 $fake-white: rgb(225, 225, 250);
 
 // GLOBAL RULES
@@ -115,6 +122,10 @@ button {
   justify-content: center;
 }
 
+.invisible {
+  opacity: 0;
+}
+
 .hidden {
   display: none;
 }
@@ -136,13 +147,21 @@ button {
 
 .mat-tab-body-wrapper {
   width: 100% !important;
-  transition: .3s !important;
+  transition: .1s !important;
 }
 
 .mat-tab-nav-bar, .mat-tab-header {
   border-bottom: 1px solid rgba($color: $fake-white, $alpha: .3);
 }
 
-.mat-tab-label:focus mat-icon {
+.mat-tab-label:focus mat-icon, .mat-tab-label-active mat-icon {
   @extend .white;
+}
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+}
+
+.mat-tab-body-content {
+  height: inherit !important;
 }
