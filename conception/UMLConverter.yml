@@ -1,0 +1,14 @@
+name: UML to PNG Converter
+on: [push]
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+    - run: echo "Conversion automatique du .du en .png ..."
+    - name: Run plantuml on the pushed file
+    - run: "java -jar plantuml.jar *.du"
+    - run: echo "Succès ! UML disponible dans ./${{}}.png""
