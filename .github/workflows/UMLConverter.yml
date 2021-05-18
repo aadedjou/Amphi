@@ -9,6 +9,7 @@ jobs:
       with:
         fetch-depth: 2
     - run: cd ./conception
+    - run: ls
     - run: echo "Conversion automatique du .du en .png ..."
     - name: Run plantuml on all .du files
     # - run: "java -jar plantuml.jar *.du"
