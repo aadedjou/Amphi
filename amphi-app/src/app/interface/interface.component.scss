@@ -4,9 +4,8 @@
   background-color: rgba(15, 15, 15, .3);
 }
 
-.slide {
+.slide img {
   @extend .line;
-  background-color: white;
 }
 
 .grid-container {
@@ -120,7 +119,7 @@
   grid-area: current;
   padding: 2.5%;
 
-  .slide {
+  .slide img {
     max-height: 400px;
   }
 
@@ -156,7 +155,10 @@
 
   .slide {
     opacity: 40%;
-    max-width: 300px;
+
+    img {
+      max-width: 300px;
+    }
   }
 
   h2 {

@@ -13,13 +13,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SlideComponent } from './interface/slide/slide.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InterfaceComponent,
     ExitDialogComponent,
-    ExerciceComponent
+    ExerciceComponent,
+    SlideComponent
   ],
   imports: [
     MatIconModule,

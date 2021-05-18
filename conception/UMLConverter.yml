@@ -10,5 +10,8 @@ jobs:
         fetch-depth: 2
     - run: echo "Conversion automatique du .du en .png ..."
     - name: Run plantuml on the pushed file
-    - run: "java -jar plantuml.jar *.du"
-    - run: echo "Succès ! UML disponible dans ./${{}}.png""
+    # - run: "java -jar plantuml.jar *.du"
+    - run: for filename in *.du; do
+                java -jar plantuml.jar "$filename"
+            done
+    - run: echo "Succès ! UML disponible dans ./${{}}.png"
