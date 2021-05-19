@@ -11,8 +11,9 @@ jobs:
     - run: echo "Conversion automatique du .du en .png ..."
 
     - name: Run plantuml on all .du files
-      run: java -jar ./conception/plantuml.jar ./conception/*.du
-    - run: echo "Succès ! Graphes UML disponibles:"
+      run: for filename in ./conception/*.du; do java -jar ./conception/plantuml.jar "$filename"; done;
+    
+    # - run: echo "Succès ! Graphes UML disponibles:"
 
-    - name: List converted files
-      run: ls -1 | grep .png$
+    # - name: List converted files
+    #   run: ls -1 | grep .png$
