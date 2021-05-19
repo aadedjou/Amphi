@@ -2,17 +2,19 @@ name: UML to PNG Converter
 on: [push]
 
 jobs:
-  Explore-GitHub-Actions:
+  generate_plantuml:
     runs-on: ubuntu-latest
+    name: plantuml
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v1
       with:
-        fetch-depth: 2
-        
-    - name: PlantUML Generator
-      uses: cloudbees/plantuml-github-action@v1.1.0
-
-    # - run: echo "Succès ! Graphes UML disponibles:"
-
-    # - name: List converted files
-    #   run: ls -1 | grep .png$
+        fetch-depth: 1
+    - name: plantuml
+      id: plantuml
+      uses: grassedge/generate-plantuml-action@v1.5
+      with:
+        path: example
+        message: "Render PlantUML files"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
