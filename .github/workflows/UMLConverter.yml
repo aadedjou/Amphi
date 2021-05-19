@@ -1,17 +1,21 @@
-name: UML to PNG Converter
-on: [push]
-
+name: generate plantuml
+on: push
 jobs:
-  Explore-GitHub-Actions:
+  generate_plantuml:
     runs-on: ubuntu-latest
+    name: plantuml
     steps:
-    - uses: actions/checkout@v2
+
+    - name: checkout
+      uses: actions/checkout@v1
       with:
-        fetch-depth: 2
-    - run: echo "Conversion automatique du .du en .png ..."
-    - name: Run plantuml on the pushed file
-    # - run: "java -jar plantuml.jar *.du"
-    - run: for filename in *.du; do
-                java -jar plantuml.jar "$filename"
-            done
-    - run: echo "Succès ! UML disponible dans (file_name).png"
+        fetch-depth: 1
+
+    - name: plantuml
+      id: plantuml
+      uses: grassedge/generate-plantuml-action@v1.5
+      with:
+        path: .
+        message: "Render PlantUML files:"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
