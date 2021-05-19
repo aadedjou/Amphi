@@ -1,0 +1,9 @@
+name: generate plantuml
+on: push
+jobs:
+  generate_plantuml:
+    runs-on: ubuntu-latest
+    name: plantuml
+    steps:
+    - name: PlantUML CLI
+      uses: lokkju/github-action-plantuml@v0.0.1
