@@ -13,7 +13,8 @@ jobs:
         fetch-depth: 2
 
     - name: Rename .du files to .pu
-      run: for f in *.du; do mv "$f" "$(echo "$f" | sed s/.du/.pu/)"; done
+      run: ls
+      run: for f in /conception/*.du; do mv "$f" "$(echo "$f" | sed s/.du/.pu/)"; done
 
     - name: plantuml
       id: plantuml
