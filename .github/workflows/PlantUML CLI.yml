@@ -7,5 +7,5 @@ jobs:
     steps:
     - name: PlantUML CLI
       with:
-        args: conception/test.pu
+        args: conception/test.puml
       uses: lokkju/github-action-plantuml@v0.0.1
