@@ -1,0 +1,7 @@
+  
+@startuml
+class Bob
+class Alice
+
+Bob --|> Alice
+@enduml
