@@ -6,15 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     name: plantuml
     steps:
+
     - name: checkout
       uses: actions/checkout@v1
       with:
-        fetch-depth: 1
+        fetch-depth: 2
+
+    - name: Rename .du files to .pu
+      run: for f in *.du; do mv "$f" "$(echo "$f" | sed s/.du/.pu/)"; done
+
     - name: plantuml
       id: plantuml
       uses: grassedge/generate-plantuml-action@v1.5
       with:
-        path: ./conception/
+        path: .
         message: "Render PlantUML files:"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
