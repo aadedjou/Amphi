@@ -1,10 +1,5 @@
 name: Generate PlantUML Diagrams
-on:
-  push:
-    paths:
-      - '**.du'
-    branches:
-      - master
+on: push
 jobs:
   ci:
     runs-on: ubuntu-latest
