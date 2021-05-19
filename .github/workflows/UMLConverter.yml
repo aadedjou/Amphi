@@ -18,6 +18,7 @@ jobs:
     - name: plantuml
       id: plantuml
       uses: grassedge/generate-plantuml-action@v1.5
+      run: cd conception
       with:
         path: .
         message: "Render PlantUML files:"
