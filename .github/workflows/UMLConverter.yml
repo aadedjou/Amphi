@@ -8,11 +8,10 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 2
-    - run: echo "Conversion automatique du .du en .png ..."
+        
+    - name: PlantUML Generator
+      uses: cloudbees/plantuml-github-action@v1.1.0
 
-    - name: Run plantuml on all .du files
-      run: for filename in ./conception/*.du; do java -jar ./conception/plantuml.jar "$filename"; done;
-    
     # - run: echo "Succès ! Graphes UML disponibles:"
 
     # - name: List converted files
