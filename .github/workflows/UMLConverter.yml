@@ -15,4 +15,4 @@ jobs:
     - run: echo "Succès ! Graphes UML disponibles:"
 
     - name: List converted files
-    - run: ls *.png
+      run: ls *.png
